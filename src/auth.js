@@ -1,5 +1,6 @@
 import auth   from "j-toker";
 import Cookie from "js-cookie";
+import PubSub from "pubsub-js";
 
 import globals from "./globals";
 
@@ -30,8 +31,9 @@ auth.deleteData = function(key) {
   });
 }
 
-auth.configure({
-  apiUrl: globals.authApiUrl
-});
+PubSub.subscribe(
+  'z3k-shared.configured',
+  () => auth.configure({ apiUrl: globals.authApiUrl })
+);
 
 export default auth;

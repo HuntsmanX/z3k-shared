@@ -1,9 +1,13 @@
+import PubSub from "pubsub-js";
+
 class GlobalState {
 
   config(options = {}) {
     Object.keys(options).forEach(
       key => this[`_${key}`] = options[key]
     );
+    
+    PubSub.publish('z3k-shared.configured');
   }
 
   // Used by ajax to construct urls
