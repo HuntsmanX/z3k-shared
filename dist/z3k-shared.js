@@ -773,19 +773,29 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var globalAjax = _globals2.default.ajax;
-
-
-var ajax = globalAjax || _ajax2.default;
-
 var AppModel = (_class = function () {
+  _createClass(AppModel, [{
+    key: "ajax",
+    get: function get() {
+      return _globals2.default.ajax || _ajax2.default;
+    }
+
+    // All model attributes are kept in the 'attrs' map. This is more
+    // convenient than keeping all attributes directly on the model object
+    // as this allows easier serialization to JSON.
+
+    // Errors are written into 'errors' map upon unsuccessful creation
+    // or update i.e. when server responds with 422 status. See 'setErrors',
+    // 'unsetErrors' and 'save' methods.
+
+    // 'uuid' is a unique string identifer, may be used as the 'key' prop
+    // in React views when iterating over a collection of objects or
+    // for identifying an object in a collection when 'id' is not yet set
+
+  }]);
 
   // Do not override constructor in child classes, use 'initialize' method
   // instead.
-
-  // Errors are written into 'errors' map upon unsuccessful creation
-  // or update i.e. when server responds with 422 status. See 'setErrors',
-  // 'unsetErrors' and 'save' methods.
 
   function AppModel() {
     var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -804,10 +814,6 @@ var AppModel = (_class = function () {
   }
 
   // To be overridden by child classes to perform initialization.
-
-  // 'uuid' is a unique string identifer, may be used as the 'key' prop
-  // in React views when iterating over a collection of objects or
-  // for identifying an object in a collection when 'id' is not yet set
 
   _createClass(AppModel, [{
     key: "initialize",
@@ -999,7 +1005,7 @@ var AppModel = (_class = function () {
 
       this.set('isBeingFetched', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: url,
         method: method
       });
@@ -1030,7 +1036,7 @@ var AppModel = (_class = function () {
       this.unsetErrors();
       this.set('isBeingSaved', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: url,
         method: method,
         payload: this.serialize()
@@ -1058,7 +1064,7 @@ var AppModel = (_class = function () {
 
       this.set('isBeingDestroyed', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: url,
         method: method
       });
