@@ -1,4 +1,4 @@
-import PubSub from "pubsub-js";
+import PubSub from "./pubsub";
 
 class GlobalState {
 
@@ -6,8 +6,7 @@ class GlobalState {
     Object.keys(options).forEach(
       key => this[`_${key}`] = options[key]
     );
-    
-    PubSub.publish('z3k-shared.configured');
+    PubSub.publish('shared.config.success');
   }
 
   // Used by ajax to construct urls
@@ -15,7 +14,7 @@ class GlobalState {
   _ajaxBaseUrl = null;
 
   get ajaxBaseUrl() {
-    if (!this._ajaxBaseUrl) this.invariant('ajaxBaseUrl');
+    if (!this._ajaxBaseUrl) this.throwError('ajaxBaseUrl');
 
     return this._ajaxBaseUrl;
   }
@@ -50,7 +49,7 @@ class GlobalState {
   _cookieDomain = null;
 
   get cookieDomain() {
-    if (!this._ajaxBaseUrl) this.invariant('cookieDomain');
+    if (!this._ajaxBaseUrl) this.throwError('cookieDomain');
 
     return this._cookieDomain;
   }
@@ -60,12 +59,12 @@ class GlobalState {
   _authApiUrl = null;
 
   get authApiUrl() {
-    if (!this._authApiUrl) this.invariant('authApiUrl');
+    if (!this._authApiUrl) this.throwError('authApiUrl');
 
     return this._authApiUrl;
   }
 
-  invariant(attr) {
+  throwError(attr) {
     throw new Error(`${attr} has not been set. Use config function from the 'z3k-shared' package to set ${attr}`);
   }
 

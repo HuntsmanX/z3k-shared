@@ -1,7 +1,7 @@
 import auth   from "j-toker";
 import Cookie from "js-cookie";
-import PubSub from "pubsub-js";
 
+import pubsub  from "./pubsub";
 import globals from "./globals";
 
 auth.persistData = function(key, val, config) {
@@ -31,9 +31,15 @@ auth.deleteData = function(key) {
   });
 }
 
-PubSub.subscribe(
-  'z3k-shared.configured',
-  () => auth.configure({ apiUrl: globals.authApiUrl })
-);
+const configAuth = () => {
+  auth.configure({
+    apiUrl: globals.authApiUrl
+  }).then(
+    (user) => pubsub.publish('auth.initial.success', user),
+    (err)  => pubsub.publish('auth.initial.error', err)
+  );
+}
+
+pubsub.subscribe('shared.config.success', configAuth);
 
 export default auth;

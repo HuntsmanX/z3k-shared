@@ -7,7 +7,7 @@
 		exports["z3kShared"] = factory(require("jquery"), require("lodash"), require("mobx"));
 	else
 		root["z3kShared"] = factory(root["$"], root["_"], root["mobx"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_7__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_8__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,9 +90,9 @@ exports.config = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pubsubJs = __webpack_require__(3);
+var _pubsub = __webpack_require__(3);
 
-var _pubsubJs2 = _interopRequireDefault(_pubsubJs);
+var _pubsub2 = _interopRequireDefault(_pubsub);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -123,21 +123,20 @@ var GlobalState = function () {
       Object.keys(options).forEach(function (key) {
         return _this['_' + key] = options[key];
       });
-
-      _pubsubJs2.default.publish('z3k-shared.configured');
+      _pubsub2.default.publish('shared.config.success');
     }
 
     // Used by ajax to construct urls
 
   }, {
-    key: 'invariant',
-    value: function invariant(attr) {
+    key: 'throwError',
+    value: function throwError(attr) {
       throw new Error(attr + ' has not been set. Use config function from the \'z3k-shared\' package to set ' + attr);
     }
   }, {
     key: 'ajaxBaseUrl',
     get: function get() {
-      if (!this._ajaxBaseUrl) this.invariant('ajaxBaseUrl');
+      if (!this._ajaxBaseUrl) this.throwError('ajaxBaseUrl');
 
       return this._ajaxBaseUrl;
     }
@@ -172,7 +171,7 @@ var GlobalState = function () {
   }, {
     key: 'cookieDomain',
     get: function get() {
-      if (!this._ajaxBaseUrl) this.invariant('cookieDomain');
+      if (!this._ajaxBaseUrl) this.throwError('cookieDomain');
 
       return this._cookieDomain;
     }
@@ -182,7 +181,7 @@ var GlobalState = function () {
   }, {
     key: 'authApiUrl',
     get: function get() {
-      if (!this._authApiUrl) this.invariant('authApiUrl');
+      if (!this._authApiUrl) this.throwError('authApiUrl');
 
       return this._authApiUrl;
     }
@@ -221,7 +220,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var _lodash = __webpack_require__(4);
 
-var _urlJoin = __webpack_require__(15);
+var _urlJoin = __webpack_require__(16);
 
 var _urlJoin2 = _interopRequireDefault(_urlJoin);
 
@@ -257,6 +256,31 @@ exports.default = ajax;
 
 /***/ },
 /* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _pubsubJs = __webpack_require__(5);
+
+var _pubsubJs2 = _interopRequireDefault(_pubsubJs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _pubsubJs2.default;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -507,13 +531,7 @@ https://github.com/mroderick/PubSubJS
 
 
 /***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 /**
@@ -542,7 +560,7 @@ module.exports = bytesToUuid;
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
@@ -579,16 +597,16 @@ if (!rng) {
 
 module.exports = rng;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ },
 /* 8 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -598,17 +616,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _jToker = __webpack_require__(11);
+var _jToker = __webpack_require__(12);
 
 var _jToker2 = _interopRequireDefault(_jToker);
 
-var _jsCookie = __webpack_require__(14);
+var _jsCookie = __webpack_require__(15);
 
 var _jsCookie2 = _interopRequireDefault(_jsCookie);
 
-var _pubsubJs = __webpack_require__(3);
+var _pubsub = __webpack_require__(3);
 
-var _pubsubJs2 = _interopRequireDefault(_pubsubJs);
+var _pubsub2 = _interopRequireDefault(_pubsub);
 
 var _globals = __webpack_require__(0);
 
@@ -641,14 +659,22 @@ _jToker2.default.deleteData = function (key) {
   });
 };
 
-_pubsubJs2.default.subscribe('z3k-shared.configured', function () {
-  return _jToker2.default.configure({ apiUrl: _globals2.default.authApiUrl });
-});
+var configAuth = function configAuth() {
+  _jToker2.default.configure({
+    apiUrl: _globals2.default.authApiUrl
+  }).then(function (user) {
+    return _pubsub2.default.publish('auth.initial.success', user);
+  }, function (err) {
+    return _pubsub2.default.publish('auth.initial.error', err);
+  });
+};
+
+_pubsub2.default.subscribe('shared.config.success', configAuth);
 
 exports.default = _jToker2.default;
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -662,7 +688,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
 
-var _mobx = __webpack_require__(7);
+var _mobx = __webpack_require__(8);
 
 var _lodash2 = __webpack_require__(4);
 
@@ -1043,7 +1069,7 @@ var Collection = (_class = function () {
 exports.default = Collection;
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1061,11 +1087,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _desc, _value, _class, _descriptor, _descriptor2;
 
-var _mobx = __webpack_require__(7);
+var _mobx = __webpack_require__(8);
 
 var _lodash = __webpack_require__(4);
 
-var _uuid = __webpack_require__(16);
+var _uuid = __webpack_require__(17);
 
 var _uuid2 = _interopRequireDefault(_uuid);
 
@@ -1487,7 +1513,7 @@ var AppModel = (_class = function () {
 exports.default = AppModel;
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! j-toker - v0.0.10-beta3 - 2015-10-14
@@ -1497,9 +1523,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     // AMD. Register as an anonymous module.
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
       __webpack_require__(1),
-      __webpack_require__(12),
-      __webpack_require__(3),
-      __webpack_require__(13)
+      __webpack_require__(13),
+      __webpack_require__(5),
+      __webpack_require__(14)
     ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports === 'object') {
     // Node/CommonJS
@@ -2847,7 +2873,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 (function(deparam){
@@ -2958,7 +2984,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -3081,7 +3107,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -3243,7 +3269,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (name, context, definition) {
@@ -3287,11 +3313,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (nam
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(17);
-var v4 = __webpack_require__(18);
+var v1 = __webpack_require__(18);
+var v4 = __webpack_require__(19);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -3301,14 +3327,14 @@ module.exports = uuid;
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 // Unique ID creation requires a high quality random # generator.  We feature
 // detect to determine the best RNG source, normalizing to a function that
 // returns 128-bits of randomness, since that's what's usually required
-var rng = __webpack_require__(6);
-var bytesToUuid = __webpack_require__(5);
+var rng = __webpack_require__(7);
+var bytesToUuid = __webpack_require__(6);
 
 // **`v1()` - Generate time-based UUID**
 //
@@ -3410,11 +3436,11 @@ module.exports = v1;
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(6);
-var bytesToUuid = __webpack_require__(5);
+var rng = __webpack_require__(7);
+var bytesToUuid = __webpack_require__(6);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -3445,7 +3471,7 @@ module.exports = v4;
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 var g;
@@ -3470,7 +3496,7 @@ module.exports = g;
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3479,21 +3505,25 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.auth = exports.ajax = exports.Model = exports.Collection = undefined;
+exports.config = exports.auth = exports.ajax = exports.pubsub = exports.Model = exports.Collection = undefined;
 
-var _collection = __webpack_require__(9);
+var _collection = __webpack_require__(10);
 
 var _collection2 = _interopRequireDefault(_collection);
 
-var _model = __webpack_require__(10);
+var _model = __webpack_require__(11);
 
 var _model2 = _interopRequireDefault(_model);
+
+var _pubsub = __webpack_require__(3);
+
+var _pubsub2 = _interopRequireDefault(_pubsub);
 
 var _ajax = __webpack_require__(2);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
-var _auth = __webpack_require__(8);
+var _auth = __webpack_require__(9);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -3501,11 +3531,18 @@ var _globals = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Helpers, utilities
+
+// Entities
+
 exports.Collection = _collection2.default;
 exports.Model = _model2.default;
+exports.pubsub = _pubsub2.default;
 exports.ajax = _ajax2.default;
 exports.auth = _auth2.default;
 exports.config = _globals.config;
+
+// Config function
 
 /***/ }
 /******/ ]);
