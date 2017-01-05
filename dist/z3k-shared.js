@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("jquery"), require("mobx"), require("lodash"), require("mobx-react"), require("react"));
+		module.exports = factory(require("mobx"), require("jquery"), require("lodash"), require("mobx-react"), require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["jquery", "mobx", "lodash", "mobx-react", "react"], factory);
+		define(["mobx", "jquery", "lodash", "mobx-react", "react"], factory);
 	else if(typeof exports === 'object')
-		exports["z3kShared"] = factory(require("jquery"), require("mobx"), require("lodash"), require("mobx-react"), require("react"));
+		exports["z3kShared"] = factory(require("mobx"), require("jquery"), require("lodash"), require("mobx-react"), require("react"));
 	else
-		root["z3kShared"] = factory(root["$"], root["mobx"], root["_"], root["mobxReact"], root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_28__, __WEBPACK_EXTERNAL_MODULE_29__) {
+		root["z3kShared"] = factory(root["mobx"], root["$"], root["_"], root["mobxReact"], root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,11 +73,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+
+/***/ },
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90,7 +96,7 @@ exports.config = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pubsub = __webpack_require__(1);
+var _pubsub = __webpack_require__(2);
 
 var _pubsub2 = _interopRequireDefault(_pubsub);
 
@@ -198,7 +204,7 @@ exports.default = globals;
 exports.config = config;
 
 /***/ },
-/* 1 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -208,19 +214,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _pubsubJs = __webpack_require__(7);
+var _pubsubJs = __webpack_require__(8);
 
 var _pubsubJs2 = _interopRequireDefault(_pubsubJs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _pubsubJs2.default;
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 /* 3 */
@@ -230,6 +230,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -239,17 +245,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _jquery = __webpack_require__(2);
+var _jquery = __webpack_require__(3);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _lodash = __webpack_require__(5);
+var _lodash = __webpack_require__(4);
 
-var _urlJoin = __webpack_require__(23);
+var _urlJoin = __webpack_require__(28);
 
 var _urlJoin2 = _interopRequireDefault(_urlJoin);
 
-var _globals = __webpack_require__(0);
+var _globals = __webpack_require__(1);
 
 var _globals2 = _interopRequireDefault(_globals);
 
@@ -280,13 +286,451 @@ var ajax = function ajax() {
 exports.default = ajax;
 
 /***/ },
-/* 5 */
-/***/ function(module, exports) {
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _desc, _value, _class, _descriptor, _descriptor2;
+
+var _mobx = __webpack_require__(0);
+
+var _lodash = __webpack_require__(4);
+
+var _uuid = __webpack_require__(29);
+
+var _uuid2 = _interopRequireDefault(_uuid);
+
+var _globals = __webpack_require__(1);
+
+var _globals2 = _interopRequireDefault(_globals);
+
+var _ajax = __webpack_require__(5);
+
+var _ajax2 = _interopRequireDefault(_ajax);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+var globalAjax = _globals2.default.ajax;
+
+
+var ajax = globalAjax || _ajax2.default;
+
+var AppModel = (_class = function () {
+
+  // Do not override constructor in child classes, use 'initialize' method
+  // instead.
+
+  // Errors are written into 'errors' map upon unsuccessful creation
+  // or update i.e. when server responds with 422 status. See 'setErrors',
+  // 'unsetErrors' and 'save' methods.
+
+  function AppModel() {
+    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, AppModel);
+
+    _initDefineProp(this, "attrs", _descriptor, this);
+
+    _initDefineProp(this, "errors", _descriptor2, this);
+
+    this.uuid = _uuid2.default.v4();
+
+    this.setDefaultAttributes();
+    this.fromJSON(data);
+    this.initialize();
+  }
+
+  // To be overridden by child classes to perform initialization.
+
+  // 'uuid' is a unique string identifer, may be used as the 'key' prop
+  // in React views when iterating over a collection of objects or
+  // for identifying an object in a collection when 'id' is not yet set
+
+  _createClass(AppModel, [{
+    key: "initialize",
+    value: function initialize() {}
+
+    // Default attributes are assigned to the constructor function of the
+    // class in the 'attributes' hash.
+
+  }, {
+    key: "markForDestruction",
+    value: function markForDestruction() {
+      this.set('_destroy', true);
+    }
+
+    // 'fromJSON' is called by the constructor and 'create'/'save'
+    // methods in case of success.
+
+  }, {
+    key: "fromJSON",
+    value: function fromJSON() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      this.setAttributes(data);
+      this.setAssociations(data);
+    }
+  }, {
+    key: "setAttributes",
+    value: function setAttributes() {
+      var _this = this;
+
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      var attrs = (0, _lodash.omit)(data, Object.keys(this.associations));
+
+      Object.keys(attrs).forEach(function (attrName) {
+        _this.set(attrName, attrs[attrName]);
+      });
+    }
+  }, {
+    key: "setDefaultAttributes",
+    value: function setDefaultAttributes() {
+      var attrs = Object.assign({}, this.defaultAttributes, {
+        isBeingFetched: false,
+        isBeingSaved: false,
+        isBeingDestroyed: false
+      });
+      this.setAttributes(attrs);
+    }
+  }, {
+    key: "setAssociations",
+    value: function setAssociations() {
+      var _this2 = this;
+
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      Object.keys(this.associations).forEach(function (associationName) {
+        var associationConfig = _this2.associations[associationName];
+
+        if ((0, _lodash.includes)(Object.keys(associationConfig), 'collection')) _this2.setCollectionAssociation(associationName, data[associationName], associationConfig);
+      });
+    }
+  }, {
+    key: "setCollectionAssociation",
+    value: function setCollectionAssociation(name) {
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      var config = arguments[2];
+
+      if (!data.length && name in this) return;
+
+      var collection = new config.collection(data, { name: config.parentKey, model: this });
+      (0, _mobx.extendObservable)(this, _defineProperty({}, name, collection));
+    }
+
+    // Options examples:
+    //
+    // serialize({ include: 'foo' });
+    // serialize({ include: ['foo', 'bar'] });
+    // serialize({ include: { foo: 'bar' } });
+    // serialize({ include: { foo: ['bar', 'baz'] } });
+    // serialize({ include: { foo: { bar: 'baz' } } });
+    // serialize({ include: { foo: { bar: ['baz', 'qux'] } } });
+
+  }, {
+    key: "serialize",
+    value: function serialize() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      var data = (0, _mobx.toJS)(this.attrs);
+      if (options.include) this._serializeAssociations(data, options);
+      return data;
+    }
+  }, {
+    key: "_serializeAssociations",
+    value: function _serializeAssociations(data, options) {
+      var _this3 = this;
+
+      var include = options.include,
+          includeMap = options.includeMap;
+
+
+      var associations = (0, _lodash.isPlainObject)(include) ? Object.keys(include) : (0, _lodash.flatten)([include]);
+
+      associations.forEach(function (association) {
+        var childOptions = (0, _lodash.isPlainObject)(include) ? _extends({}, options, { include: include[association] }) : {};
+        var key = includeMap && includeMap[association] ? includeMap[association] : association;
+
+        data[key] = _this3[association].serialize(childOptions);
+      });
+    }
+  }, {
+    key: "set",
+    value: function set(attr, val) {
+      this.attrs.set(attr, val);
+      this._ensureAccessorsExist(attr);
+    }
+  }, {
+    key: "get",
+    value: function get(attr) {
+      var _this4 = this;
+
+      return (0, _mobx.computed)(function () {
+        return _this4.attrs.get(attr);
+      }).get();
+    }
+  }, {
+    key: "has",
+    value: function has(attr) {
+      var _this5 = this;
+
+      return (0, _mobx.computed)(function () {
+        return _this5.attrs.has(attr);
+      }).get();
+    }
+  }, {
+    key: "setErrors",
+    value: function setErrors(errors) {
+      this.errors.merge(errors);
+    }
+  }, {
+    key: "unsetErrors",
+    value: function unsetErrors() {
+      this.errors.clear();
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      var _this6 = this;
+
+      this.attrs.clear();
+      this.errors.clear();
+      Object.keys(this.associations).forEach(function (associationName) {
+        _this6[associationName].clear();
+      });
+    }
+  }, {
+    key: "error",
+    value: function error(attr) {
+      var _this7 = this;
+
+      return (0, _mobx.computed)(function () {
+        return _this7.errors.get(attr);
+      }).get();
+    }
+  }, {
+    key: "getUrlAndMethod",
+    value: function getUrlAndMethod(name) {
+      var root = this.constructor.urlRoot;
+
+      switch (name) {
+        case 'fetch':
+          return [root + "/" + (this.get('uid') || this.get('id')), "GET"];
+        case 'create':
+          return [root, "POST"];
+        case 'update':
+          return [root + "/" + this.get('id'), "PATCH"];
+        case 'destroy':
+          return [root + "/" + this.get('id'), "DELETE"];
+      }
+    }
+  }, {
+    key: "fetch",
+    value: function fetch() {
+      var _this8 = this;
+
+      var _getUrlAndMethod = this.getUrlAndMethod('fetch'),
+          _getUrlAndMethod2 = _slicedToArray(_getUrlAndMethod, 2),
+          url = _getUrlAndMethod2[0],
+          method = _getUrlAndMethod2[1];
+
+      this.set('isBeingFetched', true);
+
+      var request = ajax({
+        url: url,
+        method: method
+      });
+
+      request.then(function (_ref) {
+        var data = _ref.data;
+
+        _this8.fromJSON(data);
+        _this8.set('isBeingFetched', false);
+      }, function () {
+        _this8.set('isBeingFetched', false);
+      });
+
+      return request;
+    }
+  }, {
+    key: "save",
+    value: function save() {
+      var _this9 = this;
+
+      var action = this.isPersisted ? 'update' : 'create';
+
+      var _getUrlAndMethod3 = this.getUrlAndMethod(action),
+          _getUrlAndMethod4 = _slicedToArray(_getUrlAndMethod3, 2),
+          url = _getUrlAndMethod4[0],
+          method = _getUrlAndMethod4[1];
+
+      this.unsetErrors();
+      this.set('isBeingSaved', true);
+
+      var request = ajax({
+        url: url,
+        method: method,
+        payload: this.serialize()
+      });
+
+      request.then(function (_ref2) {
+        var data = _ref2.data;
+
+        _this9.fromJSON(data);
+        _this9.set('isBeingSaved', false);
+      }, function (xhr) {
+        _this9.set('isBeingSaved', false);
+        if (xhr.status === 422) _this9.setErrors(xhr.responseJSON);
+      });
+
+      return request;
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      var _getUrlAndMethod5 = this.getUrlAndMethod('destroy'),
+          _getUrlAndMethod6 = _slicedToArray(_getUrlAndMethod5, 2),
+          url = _getUrlAndMethod6[0],
+          method = _getUrlAndMethod6[1];
+
+      this.set('isBeingDestroyed', true);
+
+      var request = ajax({
+        url: url,
+        method: method
+      });
+
+      return request;
+    }
+
+    // Created attribute accessors for the given key unless attribute accessors
+    // already exist. This allows shorter syntax for accessing attributes:
+    //
+    // obj.name instead of obj.get('name')
+    // obj.name = 'foo' instead of obj.set('name', 'foo')
+    //
+    // TODO replace this with proxies if possible
+
+  }, {
+    key: "_ensureAccessorsExist",
+    value: function _ensureAccessorsExist(key) {
+      if (key in this) return;
+
+      Object.defineProperty(this, key, {
+        get: function get() {
+          return this.attrs.get(key);
+        },
+        set: function set(val) {
+          this.set(key, val);
+        }
+      });
+    }
+  }, {
+    key: "defaultAttributes",
+    get: function get() {
+      return this.constructor.defaults || {};
+    }
+
+    // Assigned to the constructor function of the class. This is then used
+    // during initialization to assign relations to the object.
+
+  }, {
+    key: "associations",
+    get: function get() {
+      return this.constructor.associations || {};
+    }
+  }, {
+    key: "isPersisted",
+    get: function get() {
+      return !!this.get('id');
+    }
+  }, {
+    key: "isNew",
+    get: function get() {
+      return !this.get('id');
+    }
+  }, {
+    key: "isMarkedForDestruction",
+    get: function get() {
+      return this.has('_destroy') && this.get('_destroy') === true;
+    }
+  }]);
+
+  return AppModel;
+}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "attrs", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return (0, _mobx.asMap)({});
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "errors", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return (0, _mobx.asMap)({});
+  }
+}), _applyDecoratedDescriptor(_class.prototype, "initialize", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "initialize"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isPersisted", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isPersisted"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isNew", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isNew"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isMarkedForDestruction", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isMarkedForDestruction"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "markForDestruction", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "markForDestruction"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "fromJSON", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "fromJSON"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setAttributes", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setAttributes"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setDefaultAttributes", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setDefaultAttributes"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setAssociations", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setAssociations"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setCollectionAssociation", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setCollectionAssociation"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "set", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "set"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setErrors", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setErrors"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "unsetErrors", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "unsetErrors"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "clear", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "clear"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "fetch", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "fetch"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "save", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "save"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "destroy", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "destroy"), _class.prototype)), _class);
+exports.default = AppModel;
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -296,11 +740,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var mobx = __webpack_require__(3);
-var queryString = _interopDefault(__webpack_require__(21));
-var director_build_director = __webpack_require__(15);
-var React = _interopDefault(__webpack_require__(29));
-var mobxReact = __webpack_require__(28);
+var mobx = __webpack_require__(0);
+var queryString = _interopDefault(__webpack_require__(26));
+var director_build_director = __webpack_require__(20);
+var React = _interopDefault(__webpack_require__(12));
+var mobxReact = __webpack_require__(11);
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
@@ -796,7 +1240,7 @@ exports.startRouter = startRouter;
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -1047,7 +1491,7 @@ https://github.com/mroderick/PubSubJS
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 /**
@@ -1076,7 +1520,7 @@ module.exports = bytesToUuid;
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
@@ -1113,78 +1557,22 @@ if (!rng) {
 
 module.exports = rng;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _jToker = __webpack_require__(16);
-
-var _jToker2 = _interopRequireDefault(_jToker);
-
-var _jsCookie = __webpack_require__(19);
-
-var _jsCookie2 = _interopRequireDefault(_jsCookie);
-
-var _pubsub = __webpack_require__(1);
-
-var _pubsub2 = _interopRequireDefault(_pubsub);
-
-var _globals = __webpack_require__(0);
-
-var _globals2 = _interopRequireDefault(_globals);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_jToker2.default.persistData = function (key, val, config) {
-  (0, _jsCookie2.default)(key, JSON.stringify(val), {
-    expires: this.getConfig(config).cookieExpiry,
-    path: this.getConfig(config).cookiePath,
-    domain: _globals2.default.cookieDomain
-  });
-};
-
-_jToker2.default.retrieveData = function (key) {
-  var val = (0, _jsCookie2.default)(key);
-
-  try {
-    return $.parseJSON(val);
-  } catch (err) {
-    return val && val.replace(/("|')/g, '');
-  }
-};
-
-_jToker2.default.deleteData = function (key) {
-  _jsCookie2.default.remove(key, {
-    path: this.getConfig().cookiePath,
-    domain: _globals2.default.cookieDomain
-  });
-};
-
-var configAuth = function configAuth() {
-  _jToker2.default.configure({
-    apiUrl: _globals2.default.authApiUrl
-  }).then(function (user) {
-    return _pubsub2.default.publish('auth.initial.success', user);
-  }, function (err) {
-    return _pubsub2.default.publish('auth.initial.error', err);
-  });
-};
-
-_pubsub2.default.subscribe('shared.config.success', configAuth);
-
-exports.default = _jToker2.default;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
 
 /***/ },
 /* 11 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
+
+/***/ },
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1198,17 +1586,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
 
-var _mobx = __webpack_require__(3);
+var _mobx = __webpack_require__(0);
 
-var _lodash2 = __webpack_require__(5);
+var _lodash2 = __webpack_require__(4);
 
 var _lodash3 = _interopRequireDefault(_lodash2);
 
-var _globals = __webpack_require__(0);
+var _globals = __webpack_require__(1);
 
 var _globals2 = _interopRequireDefault(_globals);
 
-var _ajax = __webpack_require__(4);
+var _ajax = __webpack_require__(5);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
@@ -1579,451 +1967,7 @@ var Collection = (_class = function () {
 exports.default = Collection;
 
 /***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _desc, _value, _class, _descriptor, _descriptor2;
-
-var _mobx = __webpack_require__(3);
-
-var _lodash = __webpack_require__(5);
-
-var _uuid = __webpack_require__(24);
-
-var _uuid2 = _interopRequireDefault(_uuid);
-
-var _globals = __webpack_require__(0);
-
-var _globals2 = _interopRequireDefault(_globals);
-
-var _ajax = __webpack_require__(4);
-
-var _ajax2 = _interopRequireDefault(_ajax);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
-}
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
-}
-
-function _initializerWarningHelper(descriptor, context) {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-}
-
-var globalAjax = _globals2.default.ajax;
-
-
-var ajax = globalAjax || _ajax2.default;
-
-var AppModel = (_class = function () {
-
-  // Do not override constructor in child classes, use 'initialize' method
-  // instead.
-
-  // Errors are written into 'errors' map upon unsuccessful creation
-  // or update i.e. when server responds with 422 status. See 'setErrors',
-  // 'unsetErrors' and 'save' methods.
-
-  function AppModel() {
-    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    _classCallCheck(this, AppModel);
-
-    _initDefineProp(this, "attrs", _descriptor, this);
-
-    _initDefineProp(this, "errors", _descriptor2, this);
-
-    this.uuid = _uuid2.default.v4();
-
-    this.setDefaultAttributes();
-    this.fromJSON(data);
-    this.initialize();
-  }
-
-  // To be overridden by child classes to perform initialization.
-
-  // 'uuid' is a unique string identifer, may be used as the 'key' prop
-  // in React views when iterating over a collection of objects or
-  // for identifying an object in a collection when 'id' is not yet set
-
-  _createClass(AppModel, [{
-    key: "initialize",
-    value: function initialize() {}
-
-    // Default attributes are assigned to the constructor function of the
-    // class in the 'attributes' hash.
-
-  }, {
-    key: "markForDestruction",
-    value: function markForDestruction() {
-      this.set('_destroy', true);
-    }
-
-    // 'fromJSON' is called by the constructor and 'create'/'save'
-    // methods in case of success.
-
-  }, {
-    key: "fromJSON",
-    value: function fromJSON() {
-      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      this.setAttributes(data);
-      this.setAssociations(data);
-    }
-  }, {
-    key: "setAttributes",
-    value: function setAttributes() {
-      var _this = this;
-
-      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      var attrs = (0, _lodash.omit)(data, Object.keys(this.associations));
-
-      Object.keys(attrs).forEach(function (attrName) {
-        _this.set(attrName, attrs[attrName]);
-      });
-    }
-  }, {
-    key: "setDefaultAttributes",
-    value: function setDefaultAttributes() {
-      var attrs = Object.assign({}, this.defaultAttributes, {
-        isBeingFetched: false,
-        isBeingSaved: false,
-        isBeingDestroyed: false
-      });
-      this.setAttributes(attrs);
-    }
-  }, {
-    key: "setAssociations",
-    value: function setAssociations() {
-      var _this2 = this;
-
-      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      Object.keys(this.associations).forEach(function (associationName) {
-        var associationConfig = _this2.associations[associationName];
-
-        if ((0, _lodash.includes)(Object.keys(associationConfig), 'collection')) _this2.setCollectionAssociation(associationName, data[associationName], associationConfig);
-      });
-    }
-  }, {
-    key: "setCollectionAssociation",
-    value: function setCollectionAssociation(name) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      var config = arguments[2];
-
-      if (!data.length && name in this) return;
-
-      var collection = new config.collection(data, { name: config.parentKey, model: this });
-      (0, _mobx.extendObservable)(this, _defineProperty({}, name, collection));
-    }
-
-    // Options examples:
-    //
-    // serialize({ include: 'foo' });
-    // serialize({ include: ['foo', 'bar'] });
-    // serialize({ include: { foo: 'bar' } });
-    // serialize({ include: { foo: ['bar', 'baz'] } });
-    // serialize({ include: { foo: { bar: 'baz' } } });
-    // serialize({ include: { foo: { bar: ['baz', 'qux'] } } });
-
-  }, {
-    key: "serialize",
-    value: function serialize() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      var data = (0, _mobx.toJS)(this.attrs);
-      if (options.include) this._serializeAssociations(data, options);
-      return data;
-    }
-  }, {
-    key: "_serializeAssociations",
-    value: function _serializeAssociations(data, options) {
-      var _this3 = this;
-
-      var include = options.include,
-          includeMap = options.includeMap;
-
-
-      var associations = (0, _lodash.isPlainObject)(include) ? Object.keys(include) : (0, _lodash.flatten)([include]);
-
-      associations.forEach(function (association) {
-        var childOptions = (0, _lodash.isPlainObject)(include) ? _extends({}, options, { include: include[association] }) : {};
-        var key = includeMap && includeMap[association] ? includeMap[association] : association;
-
-        data[key] = _this3[association].serialize(childOptions);
-      });
-    }
-  }, {
-    key: "set",
-    value: function set(attr, val) {
-      this.attrs.set(attr, val);
-      this._ensureAccessorsExist(attr);
-    }
-  }, {
-    key: "get",
-    value: function get(attr) {
-      var _this4 = this;
-
-      return (0, _mobx.computed)(function () {
-        return _this4.attrs.get(attr);
-      }).get();
-    }
-  }, {
-    key: "has",
-    value: function has(attr) {
-      var _this5 = this;
-
-      return (0, _mobx.computed)(function () {
-        return _this5.attrs.has(attr);
-      }).get();
-    }
-  }, {
-    key: "setErrors",
-    value: function setErrors(errors) {
-      this.errors.merge(errors);
-    }
-  }, {
-    key: "unsetErrors",
-    value: function unsetErrors() {
-      this.errors.clear();
-    }
-  }, {
-    key: "clear",
-    value: function clear() {
-      var _this6 = this;
-
-      this.attrs.clear();
-      this.errors.clear();
-      Object.keys(this.associations).forEach(function (associationName) {
-        _this6[associationName].clear();
-      });
-    }
-  }, {
-    key: "error",
-    value: function error(attr) {
-      var _this7 = this;
-
-      return (0, _mobx.computed)(function () {
-        return _this7.errors.get(attr);
-      }).get();
-    }
-  }, {
-    key: "getUrlAndMethod",
-    value: function getUrlAndMethod(name) {
-      var root = this.constructor.urlRoot;
-
-      switch (name) {
-        case 'fetch':
-          return [root + "/" + (this.get('uid') || this.get('id')), "GET"];
-        case 'create':
-          return [root, "POST"];
-        case 'update':
-          return [root + "/" + this.get('id'), "PATCH"];
-        case 'destroy':
-          return [root + "/" + this.get('id'), "DELETE"];
-      }
-    }
-  }, {
-    key: "fetch",
-    value: function fetch() {
-      var _this8 = this;
-
-      var _getUrlAndMethod = this.getUrlAndMethod('fetch'),
-          _getUrlAndMethod2 = _slicedToArray(_getUrlAndMethod, 2),
-          url = _getUrlAndMethod2[0],
-          method = _getUrlAndMethod2[1];
-
-      this.set('isBeingFetched', true);
-
-      var request = ajax({
-        url: url,
-        method: method
-      });
-
-      request.then(function (_ref) {
-        var data = _ref.data;
-
-        _this8.fromJSON(data);
-        _this8.set('isBeingFetched', false);
-      }, function () {
-        _this8.set('isBeingFetched', false);
-      });
-
-      return request;
-    }
-  }, {
-    key: "save",
-    value: function save() {
-      var _this9 = this;
-
-      var action = this.isPersisted ? 'update' : 'create';
-
-      var _getUrlAndMethod3 = this.getUrlAndMethod(action),
-          _getUrlAndMethod4 = _slicedToArray(_getUrlAndMethod3, 2),
-          url = _getUrlAndMethod4[0],
-          method = _getUrlAndMethod4[1];
-
-      this.unsetErrors();
-      this.set('isBeingSaved', true);
-
-      var request = ajax({
-        url: url,
-        method: method,
-        payload: this.serialize()
-      });
-
-      request.then(function (_ref2) {
-        var data = _ref2.data;
-
-        _this9.fromJSON(data);
-        _this9.set('isBeingSaved', false);
-      }, function (xhr) {
-        _this9.set('isBeingSaved', false);
-        if (xhr.status === 422) _this9.setErrors(xhr.responseJSON);
-      });
-
-      return request;
-    }
-  }, {
-    key: "destroy",
-    value: function destroy() {
-      var _getUrlAndMethod5 = this.getUrlAndMethod('destroy'),
-          _getUrlAndMethod6 = _slicedToArray(_getUrlAndMethod5, 2),
-          url = _getUrlAndMethod6[0],
-          method = _getUrlAndMethod6[1];
-
-      this.set('isBeingDestroyed', true);
-
-      var request = ajax({
-        url: url,
-        method: method
-      });
-
-      return request;
-    }
-
-    // Created attribute accessors for the given key unless attribute accessors
-    // already exist. This allows shorter syntax for accessing attributes:
-    //
-    // obj.name instead of obj.get('name')
-    // obj.name = 'foo' instead of obj.set('name', 'foo')
-    //
-    // TODO replace this with proxies if possible
-
-  }, {
-    key: "_ensureAccessorsExist",
-    value: function _ensureAccessorsExist(key) {
-      if (key in this) return;
-
-      Object.defineProperty(this, key, {
-        get: function get() {
-          return this.attrs.get(key);
-        },
-        set: function set(val) {
-          this.set(key, val);
-        }
-      });
-    }
-  }, {
-    key: "defaultAttributes",
-    get: function get() {
-      return this.constructor.defaults || {};
-    }
-
-    // Assigned to the constructor function of the class. This is then used
-    // during initialization to assign relations to the object.
-
-  }, {
-    key: "associations",
-    get: function get() {
-      return this.constructor.associations || {};
-    }
-  }, {
-    key: "isPersisted",
-    get: function get() {
-      return !!this.get('id');
-    }
-  }, {
-    key: "isNew",
-    get: function get() {
-      return !this.get('id');
-    }
-  }, {
-    key: "isMarkedForDestruction",
-    get: function get() {
-      return this.has('_destroy') && this.get('_destroy') === true;
-    }
-  }]);
-
-  return AppModel;
-}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "attrs", [_mobx.observable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return (0, _mobx.asMap)({});
-  }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "errors", [_mobx.observable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return (0, _mobx.asMap)({});
-  }
-}), _applyDecoratedDescriptor(_class.prototype, "initialize", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "initialize"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isPersisted", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isPersisted"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isNew", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isNew"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isMarkedForDestruction", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isMarkedForDestruction"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "markForDestruction", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "markForDestruction"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "fromJSON", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "fromJSON"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setAttributes", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setAttributes"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setDefaultAttributes", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setDefaultAttributes"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setAssociations", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setAssociations"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setCollectionAssociation", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setCollectionAssociation"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "set", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "set"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setErrors", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setErrors"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "unsetErrors", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "unsetErrors"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "clear", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "clear"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "fetch", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "fetch"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "save", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "save"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "destroy", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "destroy"), _class.prototype)), _class);
-exports.default = AppModel;
-
-/***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2037,15 +1981,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _desc, _value, _class;
 
-var _mobxRouter = __webpack_require__(6);
+var _mobxRouter = __webpack_require__(7);
 
-var _mobx = __webpack_require__(3);
+var _mobx = __webpack_require__(0);
 
-var _pubsub = __webpack_require__(1);
+var _pubsub = __webpack_require__(2);
 
 var _pubsub2 = _interopRequireDefault(_pubsub);
 
-var _route = __webpack_require__(14);
+var _route = __webpack_require__(19);
 
 var _route2 = _interopRequireDefault(_route);
 
@@ -2218,7 +2162,7 @@ var RouterStore = (_class = function (_Router) {
 exports.default = new RouterStore();
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2230,7 +2174,486 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _mobxRouter = __webpack_require__(6);
+var _class;
+
+var _react = __webpack_require__(12);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _mobxReact = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Router = (0, _mobxReact.observer)(_class = function (_Component) {
+  _inherits(Router, _Component);
+
+  function Router() {
+    _classCallCheck(this, Router);
+
+    return _possibleConstructorReturn(this, (Router.__proto__ || Object.getPrototypeOf(Router)).apply(this, arguments));
+  }
+
+  _createClass(Router, [{
+    key: "render",
+    value: function render() {
+      var currentView = this.props.routerStore.currentView;
+
+
+      if (!currentView) return _react2.default.createElement("div", null);
+
+      var Layout = currentView.layout;
+      var Component = currentView.component;
+
+      return _react2.default.createElement(
+        Layout,
+        null,
+        _react2.default.createElement(Component, null)
+      );
+    }
+  }]);
+
+  return Router;
+}(_react.Component)) || _class;
+
+exports.default = Router;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _desc, _value, _class, _descriptor, _descriptor2;
+
+var _mobx = __webpack_require__(0);
+
+var _model = __webpack_require__(6);
+
+var _model2 = _interopRequireDefault(_model);
+
+var _pubsub = __webpack_require__(2);
+
+var _pubsub2 = _interopRequireDefault(_pubsub);
+
+var _auth = __webpack_require__(18);
+
+var _auth2 = _interopRequireDefault(_auth);
+
+var _ability2 = __webpack_require__(17);
+
+var _ability3 = _interopRequireDefault(_ability2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+var User = (_class = function (_Model) {
+  _inherits(User, _Model);
+
+  function User() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, User);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = User.__proto__ || Object.getPrototypeOf(User)).call.apply(_ref, [this].concat(args))), _this), _initDefineProp(_this, "ability", _descriptor, _this), _initDefineProp(_this, "isSignedIn", _descriptor2, _this), _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(User, [{
+    key: "initialize",
+    value: function initialize() {
+      var _this2 = this;
+
+      _pubsub2.default.subscribe('auth.validation.success', function (e, data) {
+        return _this2._fromAuth(data);
+      });
+      _pubsub2.default.subscribe('auth.signOut.success', function (e, data) {
+        return _this2._clearAttrs();
+      });
+    }
+  }, {
+    key: "allowed",
+    value: function allowed() {
+      var _this3 = this;
+
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return (0, _mobx.computed)(function () {
+        var _ability;
+
+        return (_ability = _this3.ability).allowed.apply(_ability, args);
+      }).get();
+    }
+
+    // Example conditionCheckers:
+    //
+    // {
+    //   forms: {
+    //     test: {
+    //       has_alerts: (value, resource) => {
+    //         if (value === 'all') return true;
+    //         if (value === 'yes') return resource.alerts.length > 0;
+    //       }
+    //     }
+    //   }
+    // }
+
+  }, {
+    key: "signIn",
+    value: function signIn() {
+      var _this4 = this;
+
+      this.set('isBeingSaved', true);
+      this.unsetErrors();
+
+      var request = _auth2.default.emailSignIn({
+        email: this.email,
+        password: this.password
+      });
+
+      request.then(function () {
+        _this4.set('isBeingSaved', false);
+      }, function (_ref2) {
+        var reason = _ref2.reason;
+
+        _this4.set('isBeingSaved', false);
+        _this4.setErrors({ email: [reason], password: [reason] });
+      });
+
+      return request;
+    }
+  }, {
+    key: "signOut",
+    value: function signOut() {
+      if (!this.isSignedIn) return Promise.resolve();
+      return _auth2.default.signOut();
+    }
+  }, {
+    key: "_fromAuth",
+    value: function _fromAuth(data) {
+      this.isSignedIn = true;
+      this.ability.setPermissions(data.permissions);
+
+      this.fromAuth && this.fromAuth(data);
+    }
+  }, {
+    key: "_clearAttrs",
+    value: function _clearAttrs() {
+      this.isSignedIn = false;
+      this.ability.unsetPermissions();
+
+      this.clearAttrs && this.clearAttrs();
+    }
+  }, {
+    key: "conditionCheckers",
+    get: function get() {
+      return {};
+    }
+  }]);
+
+  return User;
+}(_model2.default), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "ability", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return new _ability3.default(this.conditionCheckers);
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "isSignedIn", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _applyDecoratedDescriptor(_class.prototype, "signIn", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "signIn"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "signOut", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "signOut"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_fromAuth", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "_fromAuth"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_clearAttrs", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "_clearAttrs"), _class.prototype)), _class);
+exports.default = User;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _desc, _value, _class, _descriptor;
+
+var _mobx = __webpack_require__(0);
+
+var _lodash = __webpack_require__(4);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+var Ability = (_class = function () {
+  function Ability(conditionCheckers) {
+    _classCallCheck(this, Ability);
+
+    _initDefineProp(this, "permissions", _descriptor, this);
+
+    this.conditionCheckers = conditionCheckers;
+  }
+
+  _createClass(Ability, [{
+    key: "setPermissions",
+    value: function setPermissions(permissions) {
+      this.permissions.replace(permissions);
+    }
+  }, {
+    key: "unsetPermissions",
+    value: function unsetPermissions() {
+      this.permissions.clear();
+    }
+  }, {
+    key: "allowed",
+    value: function allowed(resource, action) {
+      var _this = this;
+
+      return (0, _mobx.computed)(function () {
+        return (0, _lodash.some)(_this.permissions, _this._checkPermission.bind(_this, resource, action));
+      }).get();
+    }
+  }, {
+    key: "_checkPermission",
+    value: function _checkPermission(resource, action, permission) {
+      var resourceKey = this._getResourceKey(resource);
+
+      return permission.resource === resourceKey && permission.action === action && this._checkConditions(permission.conditions, resource, resourceKey);
+    }
+  }, {
+    key: "_getResourceKey",
+    value: function _getResourceKey(resource) {
+      if ((0, _lodash.isString)(resource)) return resource;
+      var key = resource.constructor.resourceKey;
+      if (!key) throw "Resource key is not defined for " + resource.constructor.name;
+      return key;
+    }
+  }, {
+    key: "_checkConditions",
+    value: function _checkConditions(conditions, resource, resourceKey) {
+      var _this2 = this;
+
+      if ((0, _lodash.isString)(resource) || !Object.keys(conditions).length) return true;
+
+      return (0, _lodash.every)(Object.keys(conditions).map(function (conditionKey) {
+        var checker = _this2._getConditionChecker(resourceKey, conditionKey);
+        return checker(conditions[conditionKey], resource);
+      }));
+    }
+  }, {
+    key: "_getConditionChecker",
+    value: function _getConditionChecker(resourceKey, conditionKey) {
+      var path = [].concat(_toConsumableArray(resourceKey.split(':')), [conditionKey]).join('.');
+      var checker = (0, _lodash.at)(this.conditionCheckers, path)[0];
+      if (!checker) throw "Condition checker is not defined for " + path;
+      return checker;
+    }
+  }]);
+
+  return Ability;
+}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "permissions", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return [];
+  }
+}), _applyDecoratedDescriptor(_class.prototype, "setPermissions", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setPermissions"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "unsetPermissions", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "unsetPermissions"), _class.prototype)), _class);
+exports.default = Ability;
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jToker = __webpack_require__(21);
+
+var _jToker2 = _interopRequireDefault(_jToker);
+
+var _jsCookie = __webpack_require__(24);
+
+var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
+var _pubsub = __webpack_require__(2);
+
+var _pubsub2 = _interopRequireDefault(_pubsub);
+
+var _globals = __webpack_require__(1);
+
+var _globals2 = _interopRequireDefault(_globals);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_jToker2.default.persistData = function (key, val, config) {
+  (0, _jsCookie2.default)(key, JSON.stringify(val), {
+    expires: this.getConfig(config).cookieExpiry,
+    path: this.getConfig(config).cookiePath,
+    domain: _globals2.default.cookieDomain
+  });
+};
+
+_jToker2.default.retrieveData = function (key) {
+  var val = (0, _jsCookie2.default)(key);
+
+  try {
+    return $.parseJSON(val);
+  } catch (err) {
+    return val && val.replace(/("|')/g, '');
+  }
+};
+
+_jToker2.default.deleteData = function (key) {
+  _jsCookie2.default.remove(key, {
+    path: this.getConfig().cookiePath,
+    domain: _globals2.default.cookieDomain
+  });
+};
+
+var configAuth = function configAuth() {
+  _jToker2.default.configure({
+    apiUrl: _globals2.default.authApiUrl
+  }).then(function (user) {
+    return _pubsub2.default.publish('auth.initial.success', user);
+  }, function (err) {
+    return _pubsub2.default.publish('auth.initial.error', err);
+  });
+};
+
+_pubsub2.default.subscribe('shared.config.success', configAuth);
+
+exports.default = _jToker2.default;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _mobxRouter = __webpack_require__(7);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2272,7 +2695,7 @@ var Route = function (_MobxRoute) {
 exports.default = Route;
 
 /***/ },
-/* 15 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 
@@ -3002,7 +3425,7 @@ Router.prototype.mount = function(routes, path) {
 }( true ? exports : window));
 
 /***/ },
-/* 16 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! j-toker - v0.0.10-beta3 - 2015-10-14
@@ -3011,10 +3434,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   if (true) {
     // AMD. Register as an anonymous module.
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-      __webpack_require__(2),
-      __webpack_require__(17),
-      __webpack_require__(7),
-      __webpack_require__(18)
+      __webpack_require__(3),
+      __webpack_require__(22),
+      __webpack_require__(8),
+      __webpack_require__(23)
     ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports === 'object') {
     // Node/CommonJS
@@ -4362,12 +4785,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 17 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 (function(deparam){
     if (true) {
-        var jquery = __webpack_require__(2);
+        var jquery = __webpack_require__(3);
         module.exports = deparam(jquery);
     } else if (typeof define === 'function' && define.amd){
         define(['jquery'], function(jquery){
@@ -4473,7 +4896,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 18 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -4486,7 +4909,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory) {
 	if (true) {
 		// AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else if (typeof exports === 'object') {
 		// CommonJS
 		factory(require('jquery'));
@@ -4596,7 +5019,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 19 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -4758,7 +5181,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ },
-/* 20 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4848,13 +5271,13 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ },
-/* 21 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strictUriEncode = __webpack_require__(22);
-var objectAssign = __webpack_require__(20);
+var strictUriEncode = __webpack_require__(27);
+var objectAssign = __webpack_require__(25);
 
 function encode(value, opts) {
 	if (opts.encode) {
@@ -4953,7 +5376,7 @@ exports.stringify = function (obj, opts) {
 
 
 /***/ },
-/* 22 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4966,7 +5389,7 @@ module.exports = function (str) {
 
 
 /***/ },
-/* 23 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (name, context, definition) {
@@ -5010,11 +5433,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (nam
 
 
 /***/ },
-/* 24 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(25);
-var v4 = __webpack_require__(26);
+var v1 = __webpack_require__(30);
+var v4 = __webpack_require__(31);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -5024,14 +5447,14 @@ module.exports = uuid;
 
 
 /***/ },
-/* 25 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 // Unique ID creation requires a high quality random # generator.  We feature
 // detect to determine the best RNG source, normalizing to a function that
 // returns 128-bits of randomness, since that's what's usually required
-var rng = __webpack_require__(9);
-var bytesToUuid = __webpack_require__(8);
+var rng = __webpack_require__(10);
+var bytesToUuid = __webpack_require__(9);
 
 // **`v1()` - Generate time-based UUID**
 //
@@ -5133,11 +5556,11 @@ module.exports = v1;
 
 
 /***/ },
-/* 26 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(9);
-var bytesToUuid = __webpack_require__(8);
+var rng = __webpack_require__(10);
+var bytesToUuid = __webpack_require__(9);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -5168,7 +5591,7 @@ module.exports = v4;
 
 
 /***/ },
-/* 27 */
+/* 32 */
 /***/ function(module, exports) {
 
 var g;
@@ -5193,19 +5616,7 @@ module.exports = g;
 
 
 /***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_28__;
-
-/***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_29__;
-
-/***/ },
-/* 30 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5214,51 +5625,58 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_29__;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.auth = exports.ajax = exports.pubsub = exports.RouterStore = exports.Model = exports.Collection = undefined;
+exports.config = exports.ajax = exports.pubsub = exports.Router = exports.routerStore = exports.User = exports.Model = exports.Collection = undefined;
 
-var _collection = __webpack_require__(11);
+var _collection = __webpack_require__(13);
 
 var _collection2 = _interopRequireDefault(_collection);
 
-var _model = __webpack_require__(12);
+var _model = __webpack_require__(6);
 
 var _model2 = _interopRequireDefault(_model);
 
-var _routerStore = __webpack_require__(13);
+var _user = __webpack_require__(16);
+
+var _user2 = _interopRequireDefault(_user);
+
+var _routerStore = __webpack_require__(14);
 
 var _routerStore2 = _interopRequireDefault(_routerStore);
 
-var _pubsub = __webpack_require__(1);
+var _router = __webpack_require__(15);
+
+var _router2 = _interopRequireDefault(_router);
+
+var _pubsub = __webpack_require__(2);
 
 var _pubsub2 = _interopRequireDefault(_pubsub);
 
-var _ajax = __webpack_require__(4);
+var _ajax = __webpack_require__(5);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
-var _auth = __webpack_require__(10);
-
-var _auth2 = _interopRequireDefault(_auth);
-
-var _globals = __webpack_require__(0);
+var _globals = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Helpers, utilities
+// Components
+
+// Entities
 
 exports.Collection = _collection2.default;
 exports.Model = _model2.default;
-exports.RouterStore = _routerStore2.default;
+exports.User = _user2.default;
+exports.routerStore = _routerStore2.default;
+exports.Router = _router2.default;
 exports.pubsub = _pubsub2.default;
 exports.ajax = _ajax2.default;
-exports.auth = _auth2.default;
 exports.config = _globals.config;
 
 // Config function
 
-// Stores
+// Helpers, utilities
 
-// Entities
+// Stores
 
 /***/ }
 /******/ ]);

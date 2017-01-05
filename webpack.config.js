@@ -20,7 +20,7 @@ module.exports = {
         exclude: path.join(__dirname, 'node_modules'),
         loader:  'babel-loader',
         options: {
-          presets: ['es2015', 'stage-0'],
+          presets: ['es2015', 'stage-0', 'react'],
           plugins: ['transform-decorators-legacy', 'transform-class-properties']
         }
       }

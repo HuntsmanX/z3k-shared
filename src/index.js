@@ -2,16 +2,20 @@
 
 import Collection from "./collection";
 import Model      from "./model";
+import User       from "./user";
 
 // Stores
 
-import RouterStore from "./router-store";
+import routerStore from "./router-store";
+
+// Components
+
+import Router from "./router";
 
 // Helpers, utilities
 
 import pubsub from "./pubsub";
 import ajax   from "./ajax";
-import auth   from "./auth";
 
 // Config function
 
@@ -21,9 +25,10 @@ import { config } from "./globals";
 export {
   Collection,
   Model,
-  RouterStore,
+  User,
+  routerStore,
+  Router,
   pubsub,
   ajax,
-  auth,
   config
 };
