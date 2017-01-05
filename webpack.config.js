@@ -50,7 +50,7 @@ module.exports = {
       root:      "mobx"
     },
 
-    "mobxReact": {
+    "mobx-react": {
       commonjs:  "mobx-react",
       commonjs2: "mobx-react",
       amd:       "mobx-react",
