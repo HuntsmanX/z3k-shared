@@ -1,10 +1,19 @@
-import { action } from "mobx";
+import { action, observable } from "mobx";
 import { Model } from "../../dist/z3k-shared";
+import CustomCollection from "./custom-collection-factory";
 
 class CustomModel extends Model {
 
+  @observable collection = new CustomCollection();
+
   static get urlRoot() {
     return "/v1/forms/tests";
+  }
+
+  static get associations() {
+    return {
+      sections: { collection: CustomCollection, parentKey: 'test' }
+    };
   }
 
   static get defaults() {
@@ -18,12 +27,14 @@ class CustomModel extends Model {
 
   @action save() {
     return super.save().then(
-      () => {this.set('name', 'SAVEDTEST')}
+      () => this.set('isBeingEdited', false)
     );
+  }
+
+  @action list() {
+    this.collection.fetch();
   }
 
 }
 
-const customInstance = new CustomModel();
-
-export default customInstance;
+export default CustomModel;
