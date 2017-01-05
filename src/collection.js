@@ -9,11 +9,8 @@ import {
 import _ from "lodash";
 
 import globals from "./globals";
-const { ajax: globalAjax } = globals;
 
 import defaultAjax from "./ajax";
-
-const ajax = globalAjax || defaultAjax;
 
 const _lodash = [
   'chunk',
@@ -46,6 +43,10 @@ const _lodash = [
 ];
 
 class Collection {
+
+  get ajax() {
+    return globals.ajax || defaultAjax;
+  }
 
   @observable models         = [];
   @observable isBeingFetched = false;
@@ -140,7 +141,7 @@ class Collection {
   @action fetch() {
     this.set('isBeingFetched', true);
 
-    const request = ajax({
+    const request = this.ajax({
       url:     this.getUrl('fetch'),
       payload: {
         q:    this.query.toJSON(),
@@ -170,7 +171,7 @@ class Collection {
       model => order[model.id] = model.orderIndex
     );
 
-    ajax({
+    this.ajax({
       url:     this.getUrl('reorder'),
       method:  'PUT',
       payload: { order: order }
