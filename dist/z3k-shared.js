@@ -4857,7 +4857,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 if ( keys_last ) {
                     // Complex key, build deep object structure based on a few rules:
                     // * The 'cur' pointer starts at the object top-level.
-                    // * [] = array push (n is set to array length), [n] = array if n is
+                    // * [] = array push (n is set to array length), [n] = array if n is 
                     //   numeric, otherwise object.
                     // * If at the last keys part, set the value.
                     // * For each keys part, if the current level is undefined create an

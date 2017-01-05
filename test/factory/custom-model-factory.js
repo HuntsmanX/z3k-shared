@@ -1,5 +1,5 @@
 import { action, observable } from "mobx";
-import { Model } from "../../dist/z3k-shared";
+import Model from "../../src/model";
 import CustomCollection from "./custom-collection-factory";
 
 class CustomModel extends Model {
