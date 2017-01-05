@@ -2,7 +2,7 @@ import testInstance   from "./factory/base-model-factory";
 import CustomModel from "./factory/custom-model-factory";
 import { expect } from "chai";
 
-import { config } from "./../dist/z3k-shared";
+import { config } from "./../src/globals";
 
 describe('model', function() {
 
@@ -136,6 +136,12 @@ describe('model', function() {
       expect(customInstance.name).to.be.empty;
     })
 
+    it('should serialize assosiations', function() {
+      const testSection = {id: 125, name: 'FetchingTest'};
+      customInstance.sections.add(testSection)
+      customInstance.serialize({include: 'sections'})
+      expect(customInstance.sections.first().name).to.equal('FetchingTest');
+    })
   });
 
   describe('custom errors', function() {

@@ -1,4 +1,4 @@
-import { Collection } from "../../dist/z3k-shared";
+import Collection from "../../src/collection";
 import CustomModel from "./custom-model-factory";
 
 class CustomCollection extends Collection {

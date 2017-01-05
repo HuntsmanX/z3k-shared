@@ -1,4 +1,4 @@
-import { ajax } from "./../dist/z3k-shared";
+import ajax from "./../src/ajax";
 
 import { expect } from "chai";
 

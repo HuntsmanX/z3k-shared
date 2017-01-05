@@ -1,4 +1,4 @@
-import { Model } from "../../dist/z3k-shared";
+import Model from "../../src/model";
 
 
 var testInstance = new Model();
