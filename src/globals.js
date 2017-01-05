@@ -1,9 +1,12 @@
+import pubsub from "./pubsub";
+
 class GlobalState {
 
   config(options = {}) {
     Object.keys(options).forEach(
       key => this[`_${key}`] = options[key]
     );
+    pubsub.publish('shared.config.success');
   }
 
   // Used by ajax to construct urls
@@ -11,7 +14,7 @@ class GlobalState {
   _ajaxBaseUrl = null;
 
   get ajaxBaseUrl() {
-    if (!this._ajaxBaseUrl) throw new Error("baseUrl has not been set. Use config function from the 'z3k-shared' package to set baseUrl for ajax requests");
+    if (!this._ajaxBaseUrl) this.throwError('ajaxBaseUrl');
 
     return this._ajaxBaseUrl;
   }
@@ -39,6 +42,30 @@ class GlobalState {
 
   get ajax() {
     return this._ajax;
+  }
+
+  // Used by auth to write cookies
+
+  _cookieDomain = null;
+
+  get cookieDomain() {
+    if (!this._ajaxBaseUrl) this.throwError('cookieDomain');
+
+    return this._cookieDomain;
+  }
+
+  // Used by j-toker for server authentication
+
+  _authApiUrl = null;
+
+  get authApiUrl() {
+    if (!this._authApiUrl) this.throwError('authApiUrl');
+
+    return this._authApiUrl;
+  }
+
+  throwError(attr) {
+    throw new Error(`${attr} has not been set. Use config function from the 'z3k-shared' package to set ${attr}`);
   }
 
 }
