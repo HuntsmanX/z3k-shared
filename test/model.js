@@ -1,7 +1,6 @@
 import testInstance   from "./factory/base-model-factory";
 import CustomModel from "./factory/custom-model-factory";
 import { expect } from "chai";
-import  sinon  from "sinon";
 
 import { config } from "./../dist/z3k-shared";
 

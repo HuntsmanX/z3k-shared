@@ -369,24 +369,34 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var globalAjax = _globals2.default.ajax;
+var Model = (_class = function () {
+  _createClass(Model, [{
+    key: "ajax",
+    get: function get() {
+      return _globals2.default.ajax || _ajax2.default;
+    }
 
+    // All model attributes are kept in the 'attrs' map. This is more
+    // convenient than keeping all attributes directly on the model object
+    // as this allows easier serialization to JSON.
 
-var ajax = globalAjax || _ajax2.default;
+    // Errors are written into 'errors' map upon unsuccessful creation
+    // or update i.e. when server responds with 422 status. See 'setErrors',
+    // 'unsetErrors' and 'save' methods.
 
-var AppModel = (_class = function () {
+    // 'uuid' is a unique string identifer, may be used as the 'key' prop
+    // in React views when iterating over a collection of objects or
+    // for identifying an object in a collection when 'id' is not yet set
+
+  }]);
 
   // Do not override constructor in child classes, use 'initialize' method
   // instead.
 
-  // Errors are written into 'errors' map upon unsuccessful creation
-  // or update i.e. when server responds with 422 status. See 'setErrors',
-  // 'unsetErrors' and 'save' methods.
-
-  function AppModel() {
+  function Model() {
     var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    _classCallCheck(this, AppModel);
+    _classCallCheck(this, Model);
 
     _initDefineProp(this, "attrs", _descriptor, this);
 
@@ -401,11 +411,7 @@ var AppModel = (_class = function () {
 
   // To be overridden by child classes to perform initialization.
 
-  // 'uuid' is a unique string identifer, may be used as the 'key' prop
-  // in React views when iterating over a collection of objects or
-  // for identifying an object in a collection when 'id' is not yet set
-
-  _createClass(AppModel, [{
+  _createClass(Model, [{
     key: "initialize",
     value: function initialize() {}
 
@@ -595,7 +601,7 @@ var AppModel = (_class = function () {
 
       this.set('isBeingFetched', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: url,
         method: method
       });
@@ -626,7 +632,7 @@ var AppModel = (_class = function () {
       this.unsetErrors();
       this.set('isBeingSaved', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: url,
         method: method,
         payload: this.serialize()
@@ -654,7 +660,7 @@ var AppModel = (_class = function () {
 
       this.set('isBeingDestroyed', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: url,
         method: method
       });
@@ -715,7 +721,7 @@ var AppModel = (_class = function () {
     }
   }]);
 
-  return AppModel;
+  return Model;
 }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "attrs", [_mobx.observable], {
   enumerable: true,
   initializer: function initializer() {
@@ -727,7 +733,7 @@ var AppModel = (_class = function () {
     return (0, _mobx.asMap)({});
   }
 }), _applyDecoratedDescriptor(_class.prototype, "initialize", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "initialize"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isPersisted", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isPersisted"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isNew", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isNew"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "isMarkedForDestruction", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "isMarkedForDestruction"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "markForDestruction", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "markForDestruction"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "fromJSON", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "fromJSON"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setAttributes", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setAttributes"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setDefaultAttributes", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setDefaultAttributes"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setAssociations", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setAssociations"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setCollectionAssociation", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setCollectionAssociation"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "set", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "set"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setErrors", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setErrors"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "unsetErrors", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "unsetErrors"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "clear", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "clear"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "fetch", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "fetch"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "save", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "save"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "destroy", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "destroy"), _class.prototype)), _class);
-exports.default = AppModel;
+exports.default = Model;
 
 /***/ },
 /* 7 */
@@ -1649,14 +1655,16 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var globalAjax = _globals2.default.ajax;
-
-
-var ajax = globalAjax || _ajax2.default;
-
 var _lodash = ['chunk', 'findIndex', 'findLastIndex', 'first', 'last', 'nth', 'countBy', 'every', 'filter', 'find', 'findLast', 'forEach', 'each', 'forEachRight', 'groupBy', 'map', 'orderBy', 'partition', 'reduce', 'reduceRight', 'reject', 'sample', 'sampleSize', 'shuffle', 'size', 'some', 'sortBy'];
 
 var Collection = (_class = function () {
+  _createClass(Collection, [{
+    key: "ajax",
+    get: function get() {
+      return _globals2.default.ajax || _ajax2.default;
+    }
+  }]);
+
   function Collection() {
     var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -1775,7 +1783,7 @@ var Collection = (_class = function () {
 
       this.set('isBeingFetched', true);
 
-      var request = ajax({
+      var request = this.ajax({
         url: this.getUrl('fetch'),
         payload: {
           q: this.query.toJSON(),
@@ -1806,7 +1814,7 @@ var Collection = (_class = function () {
         return order[model.id] = model.orderIndex;
       });
 
-      ajax({
+      this.ajax({
         url: this.getUrl('reorder'),
         method: 'PUT',
         payload: { order: order }
@@ -4849,7 +4857,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 if ( keys_last ) {
                     // Complex key, build deep object structure based on a few rules:
                     // * The 'cur' pointer starts at the object top-level.
-                    // * [] = array push (n is set to array length), [n] = array if n is
+                    // * [] = array push (n is set to array length), [n] = array if n is 
                     //   numeric, otherwise object.
                     // * If at the last keys part, set the value.
                     // * For each keys part, if the current level is undefined create an

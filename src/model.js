@@ -20,7 +20,7 @@ import globals from "./globals";
 
 import defaultAjax from "./ajax";
 
-class AppModel {
+class Model {
 
   get ajax() {
     return globals.ajax || defaultAjax;
@@ -296,4 +296,4 @@ class AppModel {
 
 }
 
-export default AppModel;
+export default Model;
