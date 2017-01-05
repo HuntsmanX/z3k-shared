@@ -17,13 +17,14 @@ import {
 import uuid from "uuid";
 
 import globals from "./globals";
-const { ajax: globalAjax } = globals;
 
 import defaultAjax from "./ajax";
 
-const ajax = globalAjax || defaultAjax;
-
 class AppModel {
+
+  get ajax() {
+    return globals.ajax || defaultAjax;
+  }
 
   // All model attributes are kept in the 'attrs' map. This is more
   // convenient than keeping all attributes directly on the model object
@@ -218,7 +219,7 @@ class AppModel {
 
     this.set('isBeingFetched', true);
 
-    const request = ajax({
+    const request = this.ajax({
       url:    url,
       method: method
     });
@@ -243,7 +244,7 @@ class AppModel {
     this.unsetErrors();
     this.set('isBeingSaved', true);
 
-    const request = ajax({
+    const request = this.ajax({
       url:     url,
       method:  method,
       payload: this.serialize()
@@ -268,7 +269,7 @@ class AppModel {
 
     this.set('isBeingDestroyed', true);
 
-    const request = ajax({
+    const request = this.ajax({
       url:    url,
       method: method
     });
