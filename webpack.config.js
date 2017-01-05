@@ -48,6 +48,27 @@ module.exports = {
       commonjs2: "mobx",
       amd:       "mobx",
       root:      "mobx"
+    },
+
+    "mobxReact": {
+      commonjs:  "mobx-react",
+      commonjs2: "mobx-react",
+      amd:       "mobx-react",
+      root:      "mobxReact"
+    },
+
+    "react": {
+      commonjs:  "react",
+      commonjs2: "react",
+      amd:       "react",
+      root:      "React"
+    },
+
+    "react-dom": {
+      commonjs:  "react-dom",
+      commonjs2: "react-dom",
+      amd:       "react-dom",
+      root:      "ReactDOM"
     }
 
   }
