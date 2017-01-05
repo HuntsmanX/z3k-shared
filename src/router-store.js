@@ -1,7 +1,7 @@
 import { RouterStore as Router, startRouter } from "mobx-router";
 import { action, toJS } from "mobx";
 
-import { pubsub } from "./pubsub";
+import pubsub from "./pubsub";
 
 import Route from "./route";
 

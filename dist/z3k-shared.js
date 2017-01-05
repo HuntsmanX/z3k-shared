@@ -2043,6 +2043,8 @@ var _mobx = __webpack_require__(3);
 
 var _pubsub = __webpack_require__(1);
 
+var _pubsub2 = _interopRequireDefault(_pubsub);
+
 var _route = __webpack_require__(14);
 
 var _route2 = _interopRequireDefault(_route);
@@ -2106,7 +2108,7 @@ var RouterStore = (_class = function (_Router) {
 
       this.isSignedIn = options.isSignedIn;
 
-      _pubsub.pubsub.subscribe('auth.initial', function () {
+      _pubsub2.default.subscribe('auth.initial', function () {
         return (0, _mobxRouter.startRouter)(_this2.views, _this2.stores);
       });
     }

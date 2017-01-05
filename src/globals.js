@@ -1,4 +1,4 @@
-import PubSub from "./pubsub";
+import pubsub from "./pubsub";
 
 class GlobalState {
 
@@ -6,7 +6,7 @@ class GlobalState {
     Object.keys(options).forEach(
       key => this[`_${key}`] = options[key]
     );
-    PubSub.publish('shared.config.success');
+    pubsub.publish('shared.config.success');
   }
 
   // Used by ajax to construct urls
