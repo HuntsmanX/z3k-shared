@@ -68,19 +68,10 @@ describe('model', function() {
       expect(customInstance).to.have.property('name');
     });
 
-    it('should have http method POST for create', function() {
+    it('should have correct URLs for actions', function() {
       expect(customInstance.getUrlAndMethod('create')).to.have.deep.property('[1]', 'POST');
-    });
-
-    it('should have http method GET for fetch', function() {
       expect(customInstance.getUrlAndMethod('fetch')).to.have.deep.property('[1]', 'GET');
-    });
-
-    it('should have http method PATCH for update', function() {
       expect(customInstance.getUrlAndMethod('update')).to.have.deep.property('[1]', 'PATCH');
-    });
-
-    it('should have http method DELETE for update', function() {
       expect(customInstance.getUrlAndMethod('destroy')).to.have.deep.property('[1]', 'DELETE');
     });
 
