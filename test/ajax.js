@@ -1,7 +1,5 @@
 import ajax from "./../src/ajax";
 
-import { expect } from "chai";
-
 
 describe('ajax', function() {
 
