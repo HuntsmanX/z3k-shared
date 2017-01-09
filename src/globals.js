@@ -49,7 +49,7 @@ class GlobalState {
   _cookieDomain = null;
 
   get cookieDomain() {
-    if (!this._ajaxBaseUrl) this.throwError('cookieDomain');
+    if (!this._cookieDomain) this.throwError('cookieDomain');
 
     return this._cookieDomain;
   }
