@@ -177,7 +177,7 @@ var GlobalState = function () {
   }, {
     key: 'cookieDomain',
     get: function get() {
-      if (!this._ajaxBaseUrl) this.throwError('cookieDomain');
+      if (!this._cookieDomain) this.throwError('cookieDomain');
 
       return this._cookieDomain;
     }
