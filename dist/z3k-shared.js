@@ -2252,7 +2252,7 @@ _jToker2.default.retrieveData = function (key) {
   var val = (0, _jsCookie2.default)(key);
 
   try {
-    return $.parseJSON(val);
+    return JSON.parse(val);
   } catch (err) {
     return val && val.replace(/("|')/g, '');
   }
