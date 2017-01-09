@@ -42,6 +42,10 @@ class RouterStore {
     this.beforeSignIn = null;
   }
 
+  @action navigateToSignIn() {
+    this.navigate(this.signInView);
+  }
+
   @action replaceUrlParamsForView(view, params) {
     return this.views[view].replaceUrlParams(params);
   }
@@ -76,7 +80,7 @@ class RouterStore {
 
     if (!this.isSignedIn()) {
       this.beforeSignIn = { route: view, nextParams };
-      this.navigate(this.signInView);
+      this.navigateToSignIn();
       return false;
     }
 

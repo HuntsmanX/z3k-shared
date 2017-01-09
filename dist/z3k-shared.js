@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("mobx"), require("jquery"), require("lodash"), require("mobx-react"), require("react"));
+		module.exports = factory(require("mobx"), require("lodash"), require("jquery"), require("mobx-react"), require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["mobx", "jquery", "lodash", "mobx-react", "react"], factory);
+		define(["mobx", "lodash", "jquery", "mobx-react", "react"], factory);
 	else if(typeof exports === 'object')
-		exports["z3kShared"] = factory(require("mobx"), require("jquery"), require("lodash"), require("mobx-react"), require("react"));
+		exports["z3kShared"] = factory(require("mobx"), require("lodash"), require("jquery"), require("mobx-react"), require("react"));
 	else
-		root["z3kShared"] = factory(root["mobx"], root["$"], root["_"], root["mobxReact"], root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_31__, __WEBPACK_EXTERNAL_MODULE_32__) {
+		root["z3kShared"] = factory(root["mobx"], root["_"], root["$"], root["mobxReact"], root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_33__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -214,7 +214,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _pubsubJs = __webpack_require__(7);
+var _pubsubJs = __webpack_require__(8);
 
 var _pubsubJs2 = _interopRequireDefault(_pubsubJs);
 
@@ -245,13 +245,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _jquery = __webpack_require__(3);
+var _jquery = __webpack_require__(4);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _lodash = __webpack_require__(4);
+var _lodash = __webpack_require__(3);
 
-var _urlJoin = __webpack_require__(26);
+var _urlJoin = __webpack_require__(27);
 
 var _urlJoin2 = _interopRequireDefault(_urlJoin);
 
@@ -306,9 +306,9 @@ var _desc, _value, _class, _descriptor, _descriptor2;
 
 var _mobx = __webpack_require__(0);
 
-var _lodash = __webpack_require__(4);
+var _lodash = __webpack_require__(3);
 
-var _uuid = __webpack_require__(27);
+var _uuid = __webpack_require__(28);
 
 var _uuid2 = _interopRequireDefault(_uuid);
 
@@ -739,6 +739,240 @@ exports.default = Model;
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
+
+var _mobx = __webpack_require__(0);
+
+var _pubsub = __webpack_require__(2);
+
+var _pubsub2 = _interopRequireDefault(_pubsub);
+
+var _startRouter = __webpack_require__(18);
+
+var _startRouter2 = _interopRequireDefault(_startRouter);
+
+var _route = __webpack_require__(17);
+
+var _route2 = _interopRequireDefault(_route);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+var RouterStore = (_class = function () {
+  function RouterStore() {
+    _classCallCheck(this, RouterStore);
+
+    _initDefineProp(this, "params", _descriptor, this);
+
+    _initDefineProp(this, "queryParams", _descriptor2, this);
+
+    _initDefineProp(this, "currentView", _descriptor3, this);
+
+    this.goTo = this.goTo.bind(this);
+  }
+
+  _createClass(RouterStore, [{
+    key: "start",
+    value: function start(stores, routes, options) {
+      var _this = this;
+
+      this.stores = stores;
+      this.views = this._getViews(routes);
+
+      this.rootView = routes.rootView;
+      this.signInView = routes.signInView;
+
+      this.isSignedIn = options.isSignedIn;
+
+      _pubsub2.default.subscribe('auth.initial', function () {
+        return (0, _startRouter2.default)(_this.views, _this.stores);
+      });
+    }
+  }, {
+    key: "navigate",
+    value: function navigate(to) {
+      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      this.goTo(this.views[to], params);
+    }
+  }, {
+    key: "redirectAfterSignIn",
+    value: function redirectAfterSignIn() {
+      this.beforeSignIn ? this.goTo(this.beforeSignIn.route, this.beforeSignIn.nextParams) : this.navigate(this.rootView);
+
+      this.beforeSignIn = null;
+    }
+  }, {
+    key: "navigateToSignIn",
+    value: function navigateToSignIn() {
+      this.navigate(this.signInView);
+    }
+  }, {
+    key: "replaceUrlParamsForView",
+    value: function replaceUrlParamsForView(view, params) {
+      return this.views[view].replaceUrlParams(params);
+    }
+  }, {
+    key: "goTo",
+    value: function goTo(view, paramsObj) {
+      var store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.stores;
+
+      var currentParams = (0, _mobx.toJS)(this.params);
+
+      if (!this._checkBeforeExit(currentParams)) return;
+      if (!this._checkAuth(view, paramsObj)) return;
+      if (!this._checkBeforeEnter(view, currentParams, paramsObj)) return;
+
+      this._performOnExit(currentParams);
+
+      this.currentView = view;
+      this.params = (0, _mobx.toJS)(paramsObj);
+
+      this._performOnEnter();
+    }
+  }, {
+    key: "_checkBeforeExit",
+    value: function _checkBeforeExit(params) {
+      if (!this.currentView) return true;
+
+      return this.currentView.beforeExit({
+        route: this.currentView,
+        s: this.stores,
+        params: params
+      });
+    }
+  }, {
+    key: "_checkAuth",
+    value: function _checkAuth(view, nextParams) {
+      if (view.skipAuth) return true;
+
+      if (!this.isSignedIn()) {
+        this.beforeSignIn = { route: view, nextParams: nextParams };
+        this.navigateToSignIn();
+        return false;
+      }
+
+      return true;
+    }
+  }, {
+    key: "_checkBeforeEnter",
+    value: function _checkBeforeEnter(view, params, nextParams) {
+      return view.beforeEnter({ route: view, s: this.stores, params: params, nextParams: nextParams });
+    }
+  }, {
+    key: "_performOnExit",
+    value: function _performOnExit(params) {
+      if (!this.currentView) return;
+
+      this.currentView.onExit({
+        route: this.currentView,
+        s: this.stores,
+        params: params
+      });
+    }
+  }, {
+    key: "_performOnEnter",
+    value: function _performOnEnter() {
+      this.currentView.onEnter({
+        route: this.currentView,
+        params: this.params,
+        s: this.stores
+      });
+    }
+  }, {
+    key: "_getViews",
+    value: function _getViews(routes) {
+      var views = {};
+
+      Object.keys(routes.views).forEach(function (key) {
+        var route = routes.views[key];
+        route.layout = route.layout || routes.mainLayout;
+        views[key] = new _route2.default(route);
+      });
+
+      return views;
+    }
+  }, {
+    key: "currentPath",
+    get: function get() {
+      return this.currentView ? this.currentView.replaceUrlParams(this.params, this.queryParams) : '';
+    }
+  }]);
+
+  return RouterStore;
+}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "params", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return {};
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "queryParams", [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return {};
+  }
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "currentView", [_mobx.observable], {
+  enumerable: true,
+  initializer: null
+}), _applyDecoratedDescriptor(_class.prototype, "currentPath", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "currentPath"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "start", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "navigate", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "navigate"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "redirectAfterSignIn", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectAfterSignIn"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "navigateToSignIn", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "navigateToSignIn"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "replaceUrlParamsForView", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "replaceUrlParamsForView"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "goTo", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "goTo"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_checkAuth", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "_checkAuth"), _class.prototype)), _class);
+exports.default = new RouterStore();
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 Copyright (c) 2010,2011,2012,2013,2014 Morgan Roderick http://roderick.dk
 License: MIT - http://mrgnrdrck.mit-license.org
@@ -987,7 +1221,7 @@ https://github.com/mroderick/PubSubJS
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 /**
@@ -1016,7 +1250,7 @@ module.exports = bytesToUuid;
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
@@ -1053,10 +1287,10 @@ if (!rng) {
 
 module.exports = rng;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31)))
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1072,7 +1306,7 @@ var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4
 
 var _mobx = __webpack_require__(0);
 
-var _lodash2 = __webpack_require__(4);
+var _lodash2 = __webpack_require__(3);
 
 var _lodash3 = _interopRequireDefault(_lodash2);
 
@@ -1453,235 +1687,6 @@ var Collection = (_class = function () {
 exports.default = Collection;
 
 /***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
-
-var _mobx = __webpack_require__(0);
-
-var _pubsub = __webpack_require__(2);
-
-var _pubsub2 = _interopRequireDefault(_pubsub);
-
-var _startRouter = __webpack_require__(17);
-
-var _startRouter2 = _interopRequireDefault(_startRouter);
-
-var _route = __webpack_require__(16);
-
-var _route2 = _interopRequireDefault(_route);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
-}
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
-}
-
-function _initializerWarningHelper(descriptor, context) {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-}
-
-var RouterStore = (_class = function () {
-  function RouterStore() {
-    _classCallCheck(this, RouterStore);
-
-    _initDefineProp(this, "params", _descriptor, this);
-
-    _initDefineProp(this, "queryParams", _descriptor2, this);
-
-    _initDefineProp(this, "currentView", _descriptor3, this);
-
-    this.goTo = this.goTo.bind(this);
-  }
-
-  _createClass(RouterStore, [{
-    key: "start",
-    value: function start(stores, routes, options) {
-      var _this = this;
-
-      this.stores = stores;
-      this.views = this._getViews(routes);
-
-      this.rootView = routes.rootView;
-      this.signInView = routes.signInView;
-
-      this.isSignedIn = options.isSignedIn;
-
-      _pubsub2.default.subscribe('auth.initial', function () {
-        return (0, _startRouter2.default)(_this.views, _this.stores);
-      });
-    }
-  }, {
-    key: "navigate",
-    value: function navigate(to) {
-      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-      this.goTo(this.views[to], params);
-    }
-  }, {
-    key: "redirectAfterSignIn",
-    value: function redirectAfterSignIn() {
-      this.beforeSignIn ? this.goTo(this.beforeSignIn.route, this.beforeSignIn.nextParams) : this.navigate(this.rootView);
-
-      this.beforeSignIn = null;
-    }
-  }, {
-    key: "replaceUrlParamsForView",
-    value: function replaceUrlParamsForView(view, params) {
-      return this.views[view].replaceUrlParams(params);
-    }
-  }, {
-    key: "goTo",
-    value: function goTo(view, paramsObj) {
-      var store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.stores;
-
-      var currentParams = (0, _mobx.toJS)(this.params);
-
-      if (!this._checkBeforeExit(currentParams)) return;
-      if (!this._checkAuth(view, paramsObj)) return;
-      if (!this._checkBeforeEnter(view, currentParams, paramsObj)) return;
-
-      this._performOnExit(currentParams);
-
-      this.currentView = view;
-      this.params = (0, _mobx.toJS)(paramsObj);
-
-      this._performOnEnter();
-    }
-  }, {
-    key: "_checkBeforeExit",
-    value: function _checkBeforeExit(params) {
-      if (!this.currentView) return true;
-
-      return this.currentView.beforeExit({
-        route: this.currentView,
-        s: this.stores,
-        params: params
-      });
-    }
-  }, {
-    key: "_checkAuth",
-    value: function _checkAuth(view, nextParams) {
-      if (view.skipAuth) return true;
-
-      if (!this.isSignedIn()) {
-        this.beforeSignIn = { route: view, nextParams: nextParams };
-        this.navigate(this.signInView);
-        return false;
-      }
-
-      return true;
-    }
-  }, {
-    key: "_checkBeforeEnter",
-    value: function _checkBeforeEnter(view, params, nextParams) {
-      return view.beforeEnter({ route: view, s: this.stores, params: params, nextParams: nextParams });
-    }
-  }, {
-    key: "_performOnExit",
-    value: function _performOnExit(params) {
-      if (!this.currentView) return;
-
-      this.currentView.onExit({
-        route: this.currentView,
-        s: this.stores,
-        params: params
-      });
-    }
-  }, {
-    key: "_performOnEnter",
-    value: function _performOnEnter() {
-      this.currentView.onEnter({
-        route: this.currentView,
-        params: this.params,
-        s: this.stores
-      });
-    }
-  }, {
-    key: "_getViews",
-    value: function _getViews(routes) {
-      var views = {};
-
-      Object.keys(routes.views).forEach(function (key) {
-        var route = routes.views[key];
-        route.layout = route.layout || routes.mainLayout;
-        views[key] = new _route2.default(route);
-      });
-
-      return views;
-    }
-  }, {
-    key: "currentPath",
-    get: function get() {
-      return this.currentView ? this.currentView.replaceUrlParams(this.params, this.queryParams) : '';
-    }
-  }]);
-
-  return RouterStore;
-}(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "params", [_mobx.observable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return {};
-  }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "queryParams", [_mobx.observable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return {};
-  }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "currentView", [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _applyDecoratedDescriptor(_class.prototype, "currentPath", [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, "currentPath"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "start", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "start"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "navigate", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "navigate"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "redirectAfterSignIn", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectAfterSignIn"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "replaceUrlParamsForView", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "replaceUrlParamsForView"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "goTo", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "goTo"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_checkAuth", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "_checkAuth"), _class.prototype)), _class);
-exports.default = new RouterStore();
-
-/***/ },
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1696,11 +1701,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class;
 
-var _react = __webpack_require__(32);
+var _react = __webpack_require__(33);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _mobxReact = __webpack_require__(31);
+var _mobxReact = __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1756,6 +1761,120 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _desc, _value, _class;
+
+var _mobx = __webpack_require__(0);
+
+var _lodash = __webpack_require__(3);
+
+var _routerStore = __webpack_require__(7);
+
+var _routerStore2 = _interopRequireDefault(_routerStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+var SessionStore = (_class = function () {
+  function SessionStore() {
+    _classCallCheck(this, SessionStore);
+
+    this.ifAllowed = this.ifAllowed.bind(this);
+  }
+
+  _createClass(SessionStore, [{
+    key: "create",
+    value: function create() {
+      this._checkCurrentUser();
+
+      this.currentUser.signIn().then(function () {
+        return _routerStore2.default.redirectAfterSignIn();
+      });
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      var navigate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+      this._checkCurrentUser();
+
+      this.currentUser.signOut().then(function () {
+        return navigate && _routerStore2.default.navigateToSignIn();
+      });
+    }
+  }, {
+    key: "ifAllowed",
+    value: function ifAllowed() {
+      var _this = this;
+
+      this._checkCurrentUser();
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      var ret = args.pop();
+      var pairs = (0, _lodash.chunk)(args, 2);
+
+      var allowed = (0, _lodash.some)(pairs.map(function (p) {
+        return _this.currentUser.allowed(p[0], p[1]);
+      }));
+
+      return allowed ? ret : null;
+    }
+  }, {
+    key: "_checkCurrentUser",
+    value: function _checkCurrentUser() {
+      if (!this.currentUser) throw new Error('Session store must define this.currentUser in the constructor');
+    }
+  }]);
+
+  return SessionStore;
+}(), (_applyDecoratedDescriptor(_class.prototype, "create", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "create"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "destroy", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "destroy"), _class.prototype)), _class);
+exports.default = SessionStore;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _desc, _value, _class, _descriptor, _descriptor2;
 
 var _mobx = __webpack_require__(0);
@@ -1768,11 +1887,11 @@ var _pubsub = __webpack_require__(2);
 
 var _pubsub2 = _interopRequireDefault(_pubsub);
 
-var _auth = __webpack_require__(15);
+var _auth = __webpack_require__(16);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _ability2 = __webpack_require__(14);
+var _ability2 = __webpack_require__(15);
 
 var _ability3 = _interopRequireDefault(_ability2);
 
@@ -1953,7 +2072,7 @@ var User = (_class = function (_Model) {
 exports.default = User;
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1969,7 +2088,7 @@ var _desc, _value, _class, _descriptor;
 
 var _mobx = __webpack_require__(0);
 
-var _lodash = __webpack_require__(4);
+var _lodash = __webpack_require__(3);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -2093,7 +2212,7 @@ var Ability = (_class = function () {
 exports.default = Ability;
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2103,11 +2222,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _jToker = __webpack_require__(19);
+var _jToker = __webpack_require__(20);
 
 var _jToker2 = _interopRequireDefault(_jToker);
 
-var _jsCookie = __webpack_require__(22);
+var _jsCookie = __webpack_require__(23);
 
 var _jsCookie2 = _interopRequireDefault(_jsCookie);
 
@@ -2161,7 +2280,7 @@ _pubsub2.default.subscribe('shared.config.success', configAuth);
 exports.default = _jToker2.default;
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2179,7 +2298,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _mobx = __webpack_require__(0);
 
-var _queryString = __webpack_require__(24);
+var _queryString = __webpack_require__(25);
 
 var _queryString2 = _interopRequireDefault(_queryString);
 
@@ -2324,7 +2443,7 @@ var Route = function () {
 exports.default = Route;
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2338,7 +2457,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _director = __webpack_require__(18);
+var _director = __webpack_require__(19);
 
 var _mobx = __webpack_require__(0);
 
@@ -2387,7 +2506,7 @@ var startRouter = function startRouter(views, store) {
 exports.default = startRouter;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 
@@ -3117,7 +3236,7 @@ Router.prototype.mount = function(routes, path) {
 }( true ? exports : window));
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! j-toker - v0.0.10-beta3 - 2015-10-14
@@ -3126,10 +3245,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   if (true) {
     // AMD. Register as an anonymous module.
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-      __webpack_require__(3),
-      __webpack_require__(20),
-      __webpack_require__(7),
-      __webpack_require__(21)
+      __webpack_require__(4),
+      __webpack_require__(21),
+      __webpack_require__(8),
+      __webpack_require__(22)
     ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports === 'object') {
     // Node/CommonJS
@@ -4477,12 +4596,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 (function(deparam){
     if (true) {
-        var jquery = __webpack_require__(3);
+        var jquery = __webpack_require__(4);
         module.exports = deparam(jquery);
     } else if (typeof define === 'function' && define.amd){
         define(['jquery'], function(jquery){
@@ -4588,7 +4707,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -4601,7 +4720,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory) {
 	if (true) {
 		// AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else if (typeof exports === 'object') {
 		// CommonJS
 		factory(require('jquery'));
@@ -4711,7 +4830,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -4873,7 +4992,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4963,13 +5082,13 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strictUriEncode = __webpack_require__(25);
-var objectAssign = __webpack_require__(23);
+var strictUriEncode = __webpack_require__(26);
+var objectAssign = __webpack_require__(24);
 
 function encode(value, opts) {
 	if (opts.encode) {
@@ -5068,7 +5187,7 @@ exports.stringify = function (obj, opts) {
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5081,7 +5200,7 @@ module.exports = function (str) {
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (name, context, definition) {
@@ -5125,11 +5244,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (nam
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(28);
-var v4 = __webpack_require__(29);
+var v1 = __webpack_require__(29);
+var v4 = __webpack_require__(30);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -5139,14 +5258,14 @@ module.exports = uuid;
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 // Unique ID creation requires a high quality random # generator.  We feature
 // detect to determine the best RNG source, normalizing to a function that
 // returns 128-bits of randomness, since that's what's usually required
-var rng = __webpack_require__(9);
-var bytesToUuid = __webpack_require__(8);
+var rng = __webpack_require__(10);
+var bytesToUuid = __webpack_require__(9);
 
 // **`v1()` - Generate time-based UUID**
 //
@@ -5248,11 +5367,11 @@ module.exports = v1;
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(9);
-var bytesToUuid = __webpack_require__(8);
+var rng = __webpack_require__(10);
+var bytesToUuid = __webpack_require__(9);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -5283,7 +5402,7 @@ module.exports = v4;
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 var g;
@@ -5308,12 +5427,6 @@ module.exports = g;
 
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_31__;
-
-/***/ },
 /* 32 */
 /***/ function(module, exports) {
 
@@ -5321,6 +5434,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
 
 /***/ },
 /* 33 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_33__;
+
+/***/ },
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5329,9 +5448,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.ajax = exports.pubsub = exports.Router = exports.routerStore = exports.User = exports.Model = exports.Collection = undefined;
+exports.config = exports.ajax = exports.pubsub = exports.Router = exports.SessionStore = exports.routerStore = exports.User = exports.Model = exports.Collection = undefined;
 
-var _collection = __webpack_require__(10);
+var _collection = __webpack_require__(11);
 
 var _collection2 = _interopRequireDefault(_collection);
 
@@ -5339,13 +5458,17 @@ var _model = __webpack_require__(6);
 
 var _model2 = _interopRequireDefault(_model);
 
-var _user = __webpack_require__(13);
+var _user = __webpack_require__(14);
 
 var _user2 = _interopRequireDefault(_user);
 
-var _routerStore = __webpack_require__(11);
+var _routerStore = __webpack_require__(7);
 
 var _routerStore2 = _interopRequireDefault(_routerStore);
+
+var _sessionStore = __webpack_require__(13);
+
+var _sessionStore2 = _interopRequireDefault(_sessionStore);
 
 var _router = __webpack_require__(12);
 
@@ -5365,12 +5488,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Components
 
-// Entities
+// Stores
 
 exports.Collection = _collection2.default;
 exports.Model = _model2.default;
 exports.User = _user2.default;
 exports.routerStore = _routerStore2.default;
+exports.SessionStore = _sessionStore2.default;
 exports.Router = _router2.default;
 exports.pubsub = _pubsub2.default;
 exports.ajax = _ajax2.default;
@@ -5380,7 +5504,7 @@ exports.config = _globals.config;
 
 // Helpers, utilities
 
-// Stores
+// Entities
 
 /***/ }
 /******/ ]);
