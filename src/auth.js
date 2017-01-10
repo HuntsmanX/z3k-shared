@@ -16,7 +16,7 @@ auth.retrieveData = function(key) {
   var val = Cookie(key);
 
   try {
-    return $.parseJSON(val);
+    return JSON.parse(val);
   }
 
   catch (err) {

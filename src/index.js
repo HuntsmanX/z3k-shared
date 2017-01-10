@@ -6,7 +6,8 @@ import User       from "./user";
 
 // Stores
 
-import routerStore from "./router-store";
+import routerStore  from "./router-store";
+import SessionStore from "./session-store";
 
 // Components
 
@@ -27,6 +28,7 @@ export {
   Model,
   User,
   routerStore,
+  SessionStore,
   Router,
   pubsub,
   ajax,

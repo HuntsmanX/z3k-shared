@@ -1,11 +1,22 @@
-import { RouterStore as Router, startRouter } from "mobx-router";
-import { action, toJS } from "mobx";
+import { action, toJS, observable, computed } from "mobx";
 
-import pubsub from "./pubsub";
+import pubsub      from "./pubsub";
+import startRouter from "./router-store/start-router";
+import Route       from "./router-store/route";
 
-import Route from "./route";
+class RouterStore {
 
-class RouterStore extends Router {
+  @observable params = {};
+  @observable queryParams = {};
+  @observable currentView;
+
+  constructor() {
+    this.goTo = this.goTo.bind(this);
+  }
+
+  @computed get currentPath() {
+    return this.currentView ? this.currentView.replaceUrlParams(this.params, this.queryParams) : '';
+  }
 
   @action start(stores, routes, options) {
     this.stores = stores;
@@ -29,6 +40,10 @@ class RouterStore extends Router {
       this.navigate(this.rootView);
 
     this.beforeSignIn = null;
+  }
+
+  @action navigateToSignIn() {
+    this.navigate(this.signInView);
   }
 
   @action replaceUrlParamsForView(view, params) {
@@ -65,7 +80,7 @@ class RouterStore extends Router {
 
     if (!this.isSignedIn()) {
       this.beforeSignIn = { route: view, nextParams };
-      this.navigate(this.signInView);
+      this.navigateToSignIn();
       return false;
     }
 

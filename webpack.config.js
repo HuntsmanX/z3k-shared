@@ -2,7 +2,7 @@
 
 var path = require('path');
 
-module.exports = {
+module.exports = (env) => ({
 
   entry: path.join(__dirname, 'src', 'index.js'),
 
@@ -21,13 +21,20 @@ module.exports = {
         loader:  'babel-loader',
         options: {
           presets: ['es2015', 'stage-0', 'react'],
-          plugins: ['transform-decorators-legacy', 'transform-class-properties']
+          plugins: ['transform-decorators-legacy', 'transform-class-properties'],
+          env: {
+            test: {
+              plugins: [
+                ['__coverage__', { ignore: ["test/*.js", "test/**/*.js"] }]
+              ]
+            }
+          }
         }
       }
     ]
   },
 
-  externals: {
+  externals: env.test ? {} : {
 
     'jquery': {
       commonjs:  'jquery',
@@ -73,4 +80,4 @@ module.exports = {
 
   }
 
-};
+});
