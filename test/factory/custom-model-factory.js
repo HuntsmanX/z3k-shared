@@ -1,10 +1,8 @@
 import { action, observable } from "mobx";
 import Model from "../../src/model";
-import CustomCollection from "./custom-collection-factory";
+import CustomCollection from "./collection-factory";
 
 class CustomModel extends Model {
-
-  @observable collection = new CustomCollection();
 
   static get urlRoot() {
     return "/v1/forms/tests";

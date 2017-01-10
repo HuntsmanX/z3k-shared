@@ -1,47 +1,55 @@
-import testInstance   from "./factory/base-model-factory";
+import baseModel   from "./factory/model-factory";
 import CustomModel from "./factory/custom-model-factory";
 
 import { config } from "./../src/globals";
 
-describe('model', function() {
+describe('Model', () => {
 
-  describe('base class', function() {
+  describe('#constructor()', () => {
 
-    it('should have property uuid for every instance', function() {
-      expect(testInstance).to.have.property('uuid');
+    describe('should initialize with default attrs', () => {
+
+      it('should have property uuid', () => {
+        expect(baseModel).to.have.property('uuid');
+      });
+
+      it('shoud have no changes after call methods with empty params', () => {
+        baseModel.setAttributes();
+        baseModel.fromJSON();
+        baseModel.setAssociations();
+        expect(baseModel.isBeingSaved).to.be.false;
+        expect(baseModel.isBeingDestroyed).to.be.false;
+        expect(baseModel.isNew).to.be.true;
+        expect(baseModel.isBeingFetched).to.be.false;
+        expect(baseModel).to.have.property('errors');
+      });
     });
 
-    it('should have property errors for every instance', function() {
-      expect(testInstance).to.have.property('errors');
-    })
+    it('should set new attrs', () => {
+      baseModel.set('name', 'NewTestName');
+      expect(baseModel.name).to.equal('NewTestName');
+    });
 
-    it('should have property attrs for every instance', function() {
-      expect(testInstance).to.have.property('attrs');
-    })
+    describe('should initialize with custom attrs', () => {
+      const customInstance = new CustomModel({name: 'CustomModel'});
 
-    it('should return true for not persisted instance', function() {
-      expect(testInstance.isNew).to.be.true;
-    })
+        it('should have property name for custom instance', () => {
+          expect(customInstance).to.have.property('name');
+          expect(customInstance.name).to.equal('CustomModel');
+        });
+      });
+    });
 
-    it('should return false for not persisted instance', function() {
-      expect(testInstance.isPersisted).to.be.false;
-    })
-
-    it('should return false for default attributes (isBeingFetched)', function() {
-      expect(testInstance.isBeingFetched).to.be.false;
-    })
-
-    it('should return false for default attributes (isBeingDestroyed)', function() {
-      expect(testInstance.isBeingDestroyed).to.be.false;
-    })
-
-    it('should return false for default attributes (isBeingSaved)', function() {
-      expect(testInstance.isBeingSaved).to.be.false;
-    })
+  describe('#getUrlAndMethod()', () => {
+    const customInstance = new CustomModel()
+    expect(customInstance.getUrlAndMethod('create')).to.have.deep.property('[1]', 'POST');
+    expect(customInstance.getUrlAndMethod('fetch')).to.have.deep.property('[1]', 'GET');
+    expect(customInstance.getUrlAndMethod('update')).to.have.deep.property('[1]', 'PATCH');
+    expect(customInstance.getUrlAndMethod('destroy')).to.have.deep.property('[1]', 'DELETE');
   });
 
-  describe('custom class', function() {
-    before(function() {
+  describe('#save()', () => {
+    before(() => {
       const customAjax = (options) => {
         let ret = {};
         if(options.method == 'POST') {
@@ -59,83 +67,71 @@ describe('model', function() {
       config({
         ajax: customAjax
       });
-    })
-
-    const customInstance = new CustomModel();
-
-    it('should have property name for custom instance', function() {
-      expect(customInstance).to.have.property('name');
     });
 
-    it('should have correct URLs for actions', function() {
-      expect(customInstance.getUrlAndMethod('create')).to.have.deep.property('[1]', 'POST');
-      expect(customInstance.getUrlAndMethod('fetch')).to.have.deep.property('[1]', 'GET');
-      expect(customInstance.getUrlAndMethod('update')).to.have.deep.property('[1]', 'PATCH');
-      expect(customInstance.getUrlAndMethod('destroy')).to.have.deep.property('[1]', 'DELETE');
-    });
+    var customInstance = new CustomModel();
 
-    it('should have new property name', function() {
-      customInstance.set('name', 'NewTestName');
-      expect(customInstance.name).to.equal('NewTestName');
-    })
-
-    it('should have new name, id and sections (asMap) after save', function(done) {
+    it('should have name, id and sections (asMap) after save', (done) => {
       customInstance.set('name', 'SavedCustomModel');
-      customInstance.save().then(function() {
+      customInstance.save().then(() => {
         expect(customInstance.name).to.equal('SavedCustomModel');
         expect(customInstance.get('id')).to.equal(123);
         expect(customInstance.sections.first().name).to.equal('ChildComponentt1');
         done();
       });
-    })
+    });
 
-    it('test fetch', function(done) {
+    it('should fetch all associations', (done) => {
       const customInstance = new CustomModel({name: 'FetchingTest'});
-      customInstance.fetch().then(function () {
+      customInstance.fetch().then(() => {
         expect(customInstance.associations).to.have.property('sections');
         done();
-      })
-    })
+      });
+    });
 
-    it('it should have associations after fetch', function(done) {
-      const customInstance = new CustomModel({name: 'FetchingTest'});
-      customInstance.fetch().then(function () {
-        expect(customInstance.associations).to.have.property('sections');
-        done();
-      })
-    })
-
-    it('it should have property isBeingDestroyed (true)', function(done) {
-      const customInstance = new CustomModel({name: 'FetchingTest'});
-      customInstance.destroy().then(function () {
-        expect(customInstance.isBeingDestroyed).to.be.true;
-        done();
-      })
-    })
-
-    it('it should have new attrs', function(done) {
+    it('it should have new attrs', (done) => {
       const customInstance = new CustomModel({name: 'BeforeUpdatedTest', id: 155});
-      customInstance.save().then(function () {
+      customInstance.save().then(() => {
         expect(customInstance.name).to.equal('UpdatedModel');
         done();
-      })
-    })
-
-    it('should not have property name after clear', function() {
-      customInstance.clear();
-      expect(customInstance.name).to.be.empty;
-    })
-
-    it('should serialize assosiations', function() {
-      const testSection = {id: 125, name: 'FetchingTest'};
-      customInstance.sections.add(testSection)
-      customInstance.serialize({include: 'sections'})
-      expect(customInstance.sections.first().name).to.equal('FetchingTest');
-    })
+      });
+    });
   });
 
-  describe('custom errors', function() {
-    before(function() {
+  describe('#destroy() and #clear()', () => {
+    const customInstance = new CustomModel();
+
+    it('#markForDestruction()', () => {
+      customInstance.markForDestruction();
+      expect(customInstance._destroy).to.be.true;
+    });
+
+    it('it should have property isBeingDestroyed (true)', (done) => {
+     const customInstance = new CustomModel({name: 'FetchingTest'});
+      customInstance.destroy().then(() => {
+        expect(customInstance.isBeingDestroyed).to.be.true;
+        done();
+      });
+    });
+
+    it('should not have property name after clear', () => {
+      customInstance.clear();
+      expect(customInstance.name).to.be.empty;
+    });
+  });
+
+  describe('#serialize()', () => {
+    const customInstance = new CustomModel();
+    it('should serialize assosiations', () => {
+      const testSection = {id: 125, name: 'FetchingTest'};
+      customInstance.sections.add(testSection);
+      customInstance.serialize({include: 'sections'});
+      expect(customInstance.sections.first().name).to.equal('FetchingTest');
+    });
+  });
+
+  describe('custom errors', () => {
+    before(() => {
       const customAjax = (options) => {
         return Promise.reject({ status: 422, responseJSON: { name: ['errors'] } });
       }
@@ -146,16 +142,14 @@ describe('model', function() {
 
     });
 
-    it('it should have errors', function(done) {
+    it('it should have errors', (done) => {
       const customInstance = new CustomModel({id: null, name: ''});
       customInstance.save().catch(
         () => {
           expect(customInstance.error('name')[0]).to.equal('errors');
-          done();
+         done();
         }
       );
     });
-
   });
-
 });
